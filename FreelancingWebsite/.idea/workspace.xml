@@ -63,12 +63,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JobPost.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="JobPost.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/FreelancingWebsiteBundle/Entity/JobPost.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="563">
-              <caret line="61" column="34" lean-forward="false" selection-start-line="61" selection-start-column="22" selection-end-line="61" selection-end-column="34" />
+            <state relative-caret-position="365">
+              <caret line="47" column="37" lean-forward="false" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="37" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JobPostType.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/FreelancingWebsiteBundle/Form/JobPostType.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="16" column="51" lean-forward="false" selection-start-line="16" selection-start-column="51" selection-end-line="16" selection-end-column="51" />
+              <folding>
+                <element signature="e#49#105#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -284,18 +296,17 @@
       <option name="presentableId" value="Default" />
       <updated>1513003983025</updated>
       <workItem from="1513003987895" duration="2362000" />
-      <workItem from="1513014300976" duration="3477000" />
+      <workItem from="1513014300976" duration="3865000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5839000" />
+    <option name="totallyTimeSpent" value="6227000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="520" y="47" width="1857" height="1092" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959569" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959569" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -580,6 +591,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/FreelancingWebsiteBundle/Entity/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="80" column="7" lean-forward="false" selection-start-line="80" selection-start-column="7" selection-end-line="80" selection-end-column="7" />
+          <folding>
+            <element signature="e#51#99#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/FreelancingWebsiteBundle/Controller/JobPostController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -588,13 +609,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FreelancingWebsiteBundle/Entity/User.php">
+    <entry file="file://$PROJECT_DIR$/src/FreelancingWebsiteBundle/Entity/JobPost.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="80" column="7" lean-forward="false" selection-start-line="80" selection-start-column="7" selection-end-line="80" selection-end-column="7" />
-          <folding>
-            <element signature="e#51#99#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="365">
+          <caret line="47" column="37" lean-forward="false" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -608,17 +627,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FreelancingWebsiteBundle/Form/JobPostType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="26" column="36" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FreelancingWebsiteBundle/Entity/JobPost.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="563">
-          <caret line="61" column="34" lean-forward="false" selection-start-line="61" selection-start-column="22" selection-end-line="61" selection-end-column="34" />
-          <folding />
+        <state relative-caret-position="288">
+          <caret line="16" column="51" lean-forward="false" selection-start-line="16" selection-start-column="51" selection-end-line="16" selection-end-column="51" />
+          <folding>
+            <element signature="e#49#105#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

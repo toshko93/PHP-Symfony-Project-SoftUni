@@ -2,6 +2,7 @@
 
 namespace FreelancingWebsiteBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -50,6 +51,28 @@ class User implements UserInterface
      */
     private $lastName;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateRegistered", type="datetime")
+     */
+    private $dateRegistered;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="FreelancingWebsiteBundle\Entity\JobPost", mappedBy="client")
+     */
+    private $jobPosts;
+
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        $this->dateRegistered = new \DateTime('now');
+        $this->jobPosts = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -155,6 +178,37 @@ class User implements UserInterface
     public function getLastName()
     {
         return $this->lastName;
+    }
+
+
+    /**
+     * Get dateCreated
+     *
+     * @return \DateTime
+     */
+    public function getDateCreated()
+    {
+        return $this->dateRegistered;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getJobPosts()
+    {
+        return $this->jobPosts;
+    }
+
+    /**
+     * @param JobPost $jobPost
+     *
+     * @return User
+     */
+    public function addJobPost(JobPost $jobPost)
+    {
+        $this->jobPosts[] = $jobPost;
+
+        return $this;
     }
 
     /**

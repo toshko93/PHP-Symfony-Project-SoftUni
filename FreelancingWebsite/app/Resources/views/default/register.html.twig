@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <form method="POST" name="register">
+        <label for="user[email]">E-mail:</label><input type="text" name="user[email]" ><br/>
+        <label for="user[password]">Password:</label><input type="text" name="user[password]" ><br/>
+        <label for="user[firstName]">First Name:</label><input type="text" name="user[firstName]" ><br/>
+        <label for="user[lastName]">Last Name:</label><input type="text" name="user[lastName]" ><br/>
+        {{ form_row(form._token) }}
+        <input type="submit">
+    </form>
+{% endblock %}

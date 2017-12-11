@@ -1,3 +1,6 @@
 app:
-    resource: "@FreelancingWebsiteBundle/Controller/"
-    type:     annotation
+    resource: '@FreelancingWebsiteBundle/Controller/'
+    type: annotation
+
+logout:
+    path: /logout

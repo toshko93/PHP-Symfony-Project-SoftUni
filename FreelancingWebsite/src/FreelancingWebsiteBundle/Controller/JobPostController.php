@@ -52,4 +52,26 @@ class JobPostController extends Controller
 
         return $this->render('jobPost/job_post.html.twig', ['jobPost' => $jobPost]);
     }
+
+    /**
+     * @param $id
+     * @param Request $request
+     *
+     * @Route("/jobPost/edit/{id}", name="job_post_edit")
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     *
+     * @return Response
+     */
+    public function editJobPostAction($id, Request $request)
+    {
+        $jobPost = $this->getDoctrine()->getRepository(JobPost::class)->find($id);
+
+        if ($jobPost === null) {
+            return $this->redirectToRoute("homepage");
+        }
+
+        $form = $this->createForm(JobPostType::class, $jobPost);
+
+        return $this->render("jobPost/edit.html.twig", array('jobPost' => $jobPost, 'form' => $form->createView()));
+    }
 }

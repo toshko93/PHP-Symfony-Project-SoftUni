@@ -72,6 +72,16 @@ class JobPostController extends Controller
 
         $form = $this->createForm(JobPostType::class, $jobPost);
 
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($jobPost);
+            $em->flush();
+
+            return $this->redirectToRoute('job_post_view', array('id' => $jobPost->getId()));
+        }
+
         return $this->render("jobPost/edit.html.twig", array('jobPost' => $jobPost, 'form' => $form->createView()));
     }
 }

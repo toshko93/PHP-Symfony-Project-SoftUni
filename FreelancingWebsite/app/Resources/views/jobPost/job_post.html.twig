@@ -2,7 +2,7 @@
 
 {% block body %}
     <div class="container body-content">
-        <div class="row">
+        <div class="row well">
             <div class="col-md-12">
                 <article>
                     <header>
@@ -27,7 +27,8 @@
 
                     <footer>
                         <div class="pull-right">
-                            <a class="btn btn-default btn-xs" href="{{ path('homepage') }}">back &raquo;</a>
+                            <a class="btn btn-success btn-md" href="{{ path('job_post_edit', {'id': jobPost.id}) }}">Edit Job Post</a>
+                            <a class="btn btn-default btn-md" href="{{ path('homepage') }}">Back &raquo;</a>
                         </div>
                     </footer>
                 </article>

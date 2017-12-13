@@ -43,7 +43,7 @@ class JobPost
     private $dateCreated;
 
     /**
-     * @var string
+     *
      *
      * @ORM\Column(name="clientBudget", type="decimal", precision=7, scale=2)
      */

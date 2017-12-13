@@ -2,6 +2,8 @@
 
 namespace FreelancingWebsiteBundle\Form;
 
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,8 +15,10 @@ class JobPostType extends AbstractType
     {
         $builder
             ->add('jobTitle', TextType::class)
-            ->add('jobDescription', TextType::class)
-            ->add('clientBudget', TextType::class);
+            ->add('jobDescription', TextareaType::class)
+            ->add('clientBudget', NumberType::class, array(
+                'scale' => 2,
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -22,10 +26,5 @@ class JobPostType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'FreelancingWebsiteBundle\Entity\JobPost',
         ));
-    }
-
-    public function getBlockPrefix()
-    {
-        return 'freelancing_website_bundle_job_post_type';
     }
 }

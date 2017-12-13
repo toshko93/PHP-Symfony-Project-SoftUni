@@ -20,10 +20,12 @@ class JobPostController extends Controller
      *
      * @return Response
      */
-    public function createAction()
+    public function createAction(Request $request)
     {
         $jobPost = new JobPost();
         $form = $this->createForm(JobPostType::class, $jobPost);
+
+        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $jobPost->setClient($this->getUser());
@@ -35,6 +37,6 @@ class JobPostController extends Controller
             return $this->redirectToRoute('homepage');
         }
 
-        return $this->render('jobPost/create.html.twig', array('form' => $form->createView()));
+        return $this->render('jobPost/create.html.twig', ['form' => $form->createView()]);
     }
 }

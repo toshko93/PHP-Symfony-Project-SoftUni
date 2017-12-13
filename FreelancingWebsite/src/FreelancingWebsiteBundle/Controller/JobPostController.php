@@ -39,4 +39,17 @@ class JobPostController extends Controller
 
         return $this->render('jobPost/create.html.twig', ['form' => $form->createView()]);
     }
+
+    /**
+     * @param $id
+     *
+     * @Route("/jobPost/{id}", name="job_post_view")
+     * @return Response
+     */
+    public function viewAction($id)
+    {
+        $jobPost = $this->getDoctrine()->getRepository(JobPost::class)->find($id);
+
+        return $this->render('jobPost/job_post.html.twig', ['jobPost' => $jobPost]);
+    }
 }

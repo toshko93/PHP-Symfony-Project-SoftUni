@@ -2,6 +2,31 @@
 
 {% block body %}
     <div class="container body-content">
-        Welcome to freelancing website
+        <div class="row well">
+            {% for jobPost in jobPosts %}
+                <div class="col-md-6">
+                    <article>
+                        <header>
+                            <h2>{{ jobPost.jobTitle }}</h2>
+                        </header>
+
+                        <p>
+                            {{ jobPost.jobDescription }}
+                        </p>
+
+                        <small class="author">
+                            {{ jobPost.client.getFirstName }} {{ jobPost.client.getLastName }}
+                        </small>
+
+                        <footer>
+                            <div class="pull-right">
+                                <a class="btn btn-default btn-xs"
+                                   href="{{ path('job_post_view', {'id': jobPost.id}) }}">Read more &raquo;</a>
+                            </div>
+                        </footer>
+                    </article>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container body-content">
+        <div class="row">
+            <div class="col-md-12">
+                <article>
+                    <header>
+                        <h2>{{ jobPost.jobTitle }}</h2>
+                    </header>
+
+                    <p>
+                        {{ jobPost.dateCreated|date('Y-m-d') }}
+                    </p>
+
+                    <p>
+                        {{ jobPost.jobDescription }}
+                    </p>
+
+                    <p>
+                        {{ jobPost.clientBudget }}
+                    </p>
+
+                    <small class="author">
+                        {{ jobPost.client.getFirstName }} {{ jobPost.client.getLastName }}
+                    </small>
+
+                    <footer>
+                        <div class="pull-right">
+                            <a class="btn btn-default btn-xs" href="{{ path('homepage') }}">back &raquo;</a>
+                        </div>
+                    </footer>
+                </article>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <div class="container body-content span=8 offset=2">
+        <div class="well">
+            <form class="form-horizontal" action="{{ path('job_post_delete', {id: jobPost.id}) }}" method="POST">
+                <fieldset>
+                    <legend>Edit Job Post</legend>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="job_title">Job Post Title</label>
+                        <div class="col-sm-4 ">
+                            <input type="text" class="form-control" id="job_title" placeholder="Post Title"
+                                   name="job_post[jobTitle]" value="{{ jobPost.jobTitle }}" disabled>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="job_description">Job Description</label>
+                        <div class="col-sm-6">
+                        <textarea class="form-control" rows="6" id="job_description"
+                                  name="job_post[jobDescription]" disabled>{{ jobPost.jobDescription }}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="job_title">Your Budget</label>
+                        <div class="col-sm-4 ">
+                            <input type="text" class="form-control" id="job_title" placeholder="Budget for the project"
+                                   name="job_post[clientBudget]" value="{{ jobPost.clientBudget }}" disabled>
+                        </div>
+                    </div>
+
+                    {{ form_row(form._token) }}
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <a class="btn btn-default" href="{{ path('job_post_view', {id: jobPost.id}) }}">Cancel</a>
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+{% endblock %}

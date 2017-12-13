@@ -1,12 +1,49 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <form method="POST" name="register">
-        <label for="user[email]">E-mail:</label><input type="text" name="user[email]" ><br/>
-        <label for="user[password]">Password:</label><input type="text" name="user[password]" ><br/>
-        <label for="user[firstName]">First Name:</label><input type="text" name="user[firstName]" ><br/>
-        <label for="user[lastName]">Last Name:</label><input type="text" name="user[lastName]" ><br/>
-        {{ form_row(form._token) }}
-        <input type="submit">
-    </form>
+    <div class="container body-content span=8 offset=2">
+        <div class="well">
+            <form class="form-horizontal" method="POST" name="register">
+                <fieldset>
+                    <legend>Register</legend>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="user_email">E-mail</label>
+                        <div class="col-sm-4 ">
+                            <input type="text" class="form-control" id="user_email" name="user[email]">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="user_password">Password</label>
+                        <div class="col-sm-4 ">
+                            <input type="text" class="form-control" id="user_password" name="user[password]">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="first_name">First Name</label>
+                        <div class="col-sm-4 ">
+                            <input type="text" class="form-control" id="first_name" name="user[firstName]">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="last_name">Last Name</label>
+                        <div class="col-sm-4 ">
+                            <input type="text" class="form-control" id="last_name" name="user[lastName]">
+                        </div>
+                    </div>
+
+                    {{ form_row(form._token) }}
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
 {% endblock %}

@@ -25,7 +25,7 @@
                 <div class="navbar-header">
                     <a href="{{ path('homepage') }}" class="navbar-brand">SOFTUNI BLOG</a>
                     {% if app.user %}
-                        {#<a href="{{ path('article_create') }}" class="navbar-brand">#}
+                        {#<a href="{{ path('job_post_create') }}" class="navbar-brand">#}
                             {#Create Article#}
                         {#</a>#}
                     {% endif %}
@@ -43,6 +43,11 @@
                                     {#My Profile#}
                                 {#</a>#}
                             {#</li>#}
+                            <li>
+                                <a href="{{ path('job_post_create') }}">
+                                    Create Article
+                                </a>
+                            </li>
                             <li>
                                 <a href="{{ path('logout') }}">
                                     Logout

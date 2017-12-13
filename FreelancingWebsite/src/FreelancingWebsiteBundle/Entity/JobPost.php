@@ -59,7 +59,7 @@ class JobPost
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="FreelancingWebsiteBundle\Entity\User", inversedBy="job_posts")
+     * @ORM\ManyToOne(targetEntity="FreelancingWebsiteBundle\Entity\User", inversedBy="jobPosts")
      * @ORM\JoinColumn(name="clientId", referencedColumnName="id")
      */
     private $client;

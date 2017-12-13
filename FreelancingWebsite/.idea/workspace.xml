@@ -51,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="job_post.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="job_post.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/jobPost/job_post.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="450">
-              <caret line="25" column="28" lean-forward="true" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+              <caret line="25" column="28" lean-forward="false" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -103,16 +103,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JobPostController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="JobPostController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/FreelancingWebsiteBundle/Controller/JobPostController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="59" column="55" lean-forward="false" selection-start-line="59" selection-start-column="42" selection-end-line="59" selection-end-column="55" />
+            <state relative-caret-position="923">
+              <caret line="116" column="44" lean-forward="false" selection-start-line="116" selection-start-column="44" selection-end-line="116" selection-end-column="44" />
               <folding>
                 <element signature="e#55#99#0#PHP" expanded="true" />
                 <element signature="e#1184#1210#0#PHP" expanded="true" />
                 <element signature="e#1526#1554#0#PHP" expanded="true" />
-                <element signature="e#2471#2495#0#PHP" expanded="true" />
+                <element signature="e#2464#2488#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -146,9 +146,9 @@
         <option value="$PROJECT_DIR$/app/Resources/views/default/index.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/src/FreelancingWebsiteBundle/Controller/HomeController.php" />
-        <option value="$PROJECT_DIR$/src/FreelancingWebsiteBundle/Controller/JobPostController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/jobPost/edit.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/jobPost/job_post.html.twig" />
+        <option value="$PROJECT_DIR$/src/FreelancingWebsiteBundle/Controller/JobPostController.php" />
       </list>
     </option>
   </component>
@@ -314,12 +314,12 @@
       <updated>1513003983025</updated>
       <workItem from="1513003987895" duration="2362000" />
       <workItem from="1513014300976" duration="7552000" />
-      <workItem from="1513178042740" duration="10726000" />
+      <workItem from="1513178042740" duration="11446000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20640000" />
+    <option name="totallyTimeSpent" value="21360000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
@@ -360,7 +360,7 @@
         <state relative-caret-position="1098">
           <caret line="63" column="94" lean-forward="false" selection-start-line="63" selection-start-column="88" selection-end-line="63" selection-end-column="94" />
           <folding>
-            <element signature="e#51#99#0#PHP" expanded="true" />
+            <element signature="e#51#99#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -396,7 +396,7 @@
         <state relative-caret-position="486">
           <caret line="30" column="1" lean-forward="false" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
           <folding>
-            <element signature="e#49#107#0#PHP" expanded="true" />
+            <element signature="e#49#107#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -409,7 +409,7 @@
             <element signature="e#55#99#0#PHP" expanded="true" />
             <element signature="e#1184#1210#0#PHP" expanded="true" />
             <element signature="e#1526#1554#0#PHP" expanded="true" />
-            <element signature="e#2471#2495#0#PHP" expanded="true" />
+            <element signature="e#2464#2488#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -435,7 +435,7 @@
         <state relative-caret-position="1476">
           <caret line="83" column="5" lean-forward="false" selection-start-line="83" selection-start-column="5" selection-end-line="83" selection-end-column="5" />
           <folding>
-            <element signature="e#51#99#0#PHP" expanded="true" />
+            <element signature="e#51#99#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -649,7 +649,7 @@
         <state relative-caret-position="1031">
           <caret line="256" column="7" lean-forward="false" selection-start-line="256" selection-start-column="4" selection-end-line="256" selection-end-column="7" />
           <folding>
-            <element signature="e#51#99#0#PHP" expanded="true" />
+            <element signature="e#51#99#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -683,7 +683,7 @@
         <state relative-caret-position="378">
           <caret line="21" column="5" lean-forward="false" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
           <folding>
-            <element signature="e#49#107#0#PHP" expanded="true" />
+            <element signature="e#49#107#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -692,14 +692,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="810">
           <caret line="45" column="18" lean-forward="false" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/default/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -746,19 +738,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FreelancingWebsiteBundle/Controller/JobPostController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="59" column="55" lean-forward="false" selection-start-line="59" selection-start-column="42" selection-end-line="59" selection-end-column="55" />
-          <folding>
-            <element signature="e#55#99#0#PHP" expanded="true" />
-            <element signature="e#1184#1210#0#PHP" expanded="true" />
-            <element signature="e#1526#1554#0#PHP" expanded="true" />
-            <element signature="e#2471#2495#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/jobPost/edit.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -770,8 +749,29 @@
     <entry file="file://$PROJECT_DIR$/app/Resources/views/jobPost/job_post.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
-          <caret line="25" column="28" lean-forward="true" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+          <caret line="25" column="28" lean-forward="false" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/default/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FreelancingWebsiteBundle/Controller/JobPostController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="923">
+          <caret line="116" column="44" lean-forward="false" selection-start-line="116" selection-start-column="44" selection-end-line="116" selection-end-column="44" />
+          <folding>
+            <element signature="e#55#99#0#PHP" expanded="true" />
+            <element signature="e#1184#1210#0#PHP" expanded="true" />
+            <element signature="e#1526#1554#0#PHP" expanded="true" />
+            <element signature="e#2464#2488#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

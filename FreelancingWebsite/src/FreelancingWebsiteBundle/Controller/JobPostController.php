@@ -62,12 +62,12 @@ class JobPostController extends Controller
      *
      * @return Response
      */
-    public function editJobPostAction($id, Request $request)
+    public function editAction($id, Request $request)
     {
         $jobPost = $this->getDoctrine()->getRepository(JobPost::class)->find($id);
 
         if ($jobPost === null) {
-            return $this->redirectToRoute("homepage");
+            return $this->redirectToRoute('homepage');
         }
 
         $form = $this->createForm(JobPostType::class, $jobPost);
@@ -82,6 +82,38 @@ class JobPostController extends Controller
             return $this->redirectToRoute('job_post_view', array('id' => $jobPost->getId()));
         }
 
-        return $this->render("jobPost/edit.html.twig", array('jobPost' => $jobPost, 'form' => $form->createView()));
+        return $this->render('jobPost/edit.html.twig', array('jobPost' => $jobPost, 'form' => $form->createView()));
+    }
+
+    /**
+     * @param $id
+     * @param Request $request
+     *
+     * @Route("/jobPost/delete/{id}", name="job_post_delete")
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     *
+     * @return Response
+     */
+    public function deleteAction($id, Request $request)
+    {
+        $jobPost = $this->getDoctrine()->getRepository(JobPost::class)->find($id);
+
+        if ($jobPost === null) {
+            return $this->redirectToRoute('homepage');
+        }
+
+        $form = $this->createForm(JobPostType::class, $jobPost);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($jobPost);
+            $em->flush();
+
+            return $this->redirectToRoute('homepage');
+        }
+
+        return $this->render('jobPost/delete.html.twig', array('jobPost' => $jobPost, 'form' => $form->createView()));
     }
 }

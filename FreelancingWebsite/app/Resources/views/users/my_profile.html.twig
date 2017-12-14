@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container body-content">
+        <div class="row well">
+            <div class="col-md-12">
+                <div class="profile-wrapper">
+                    <header>
+                        {{ myProfile.getFirstName() }} {{ myProfile.getLastName() }}
+                    </header>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

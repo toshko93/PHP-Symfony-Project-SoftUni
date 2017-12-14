@@ -70,6 +70,13 @@ class JobPostController extends Controller
             return $this->redirectToRoute('homepage');
         }
 
+        $currentUser = $this->getUser();
+
+        if (!$currentUser->isJobPostAuthor($jobPost) && !$currentUser->isAdmin())
+        {
+            return $this->redirectToRoute('homepage');
+        }
+
         $form = $this->createForm(JobPostType::class, $jobPost);
 
         $form->handleRequest($request);
@@ -99,6 +106,13 @@ class JobPostController extends Controller
         $jobPost = $this->getDoctrine()->getRepository(JobPost::class)->find($id);
 
         if ($jobPost === null) {
+            return $this->redirectToRoute('homepage');
+        }
+
+        $currentUser = $this->getUser();
+
+        if (!$currentUser->isJobPostAuthor($jobPost) && !$currentUser->isAdmin())
+        {
             return $this->redirectToRoute('homepage');
         }
 

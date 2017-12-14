@@ -27,8 +27,12 @@
 
                     <footer>
                         <div class="pull-right">
+
+                            {% if app.getUser() and (app.getUser().isJobPostAuthor(jobPost) or app.getUser().isAdmin()) %}
                             <a class="btn btn-success btn-md" href="{{ path('job_post_edit', {'id': jobPost.id}) }}">Edit Job Post</a>
                             <a class="btn btn-danger btn-md" href="{{ path('job_post_delete', {'id': jobPost.id}) }}">Delete Job Post</a>
+                            {% endif %}
+
                             <a class="btn btn-default btn-md" href="{{ path('homepage') }}">Back &raquo;</a>
                         </div>
                     </footer>

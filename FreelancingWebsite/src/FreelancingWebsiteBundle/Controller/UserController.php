@@ -2,6 +2,7 @@
 
 namespace FreelancingWebsiteBundle\Controller;
 
+use FreelancingWebsiteBundle\Entity\Role;
 use FreelancingWebsiteBundle\Entity\User;
 use FreelancingWebsiteBundle\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -26,6 +27,11 @@ class UserController extends Controller
             $password = $this->get('security.password_encoder')->encodePassword($user, $user->getPassword());
 
             $user->setPassword($password);
+
+            $roleRepository = $this->getDoctrine()->getRepository(Role::class);
+            $userRole = $roleRepository->findOneBy(['name' => 'ROLE_USER']);
+
+            $user->addRole($userRole);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);

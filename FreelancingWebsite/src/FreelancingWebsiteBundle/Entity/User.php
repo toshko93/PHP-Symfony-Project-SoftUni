@@ -66,12 +66,23 @@ class User implements UserInterface
     private $jobPosts;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="FreelancingWebsiteBundle\Entity\Role")
+     * @ORM\JoinTable(name="user_roles",
+     *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")})
+     */
+    private $roles;
+
+    /**
      * User constructor.
      */
     public function __construct()
     {
         $this->dateRegistered = new \DateTime('now');
         $this->jobPosts = new ArrayCollection();
+        $this->roles = new ArrayCollection();
     }
 
     /**
@@ -229,7 +240,27 @@ class User implements UserInterface
      */
     public function getRoles()
     {
-        return [];
+        $stringRoles = [];
+
+        foreach ($this->roles as $role)
+        {
+            /** @var $role Role */
+            $stringRoles[] = $role->getRole();
+        }
+
+        return $stringRoles;
+    }
+
+    /**
+     * @param Role $role
+     *
+     * @return  User
+     */
+    public function addRole(Role $role)
+    {
+        $this->roles[] = $role;
+
+        return $this;
     }
 
     /**

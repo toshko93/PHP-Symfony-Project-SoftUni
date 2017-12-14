@@ -4,10 +4,10 @@
     <div class="container body-content">
         <div class="row well">
             {% for jobPost in jobPosts %}
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <article>
                         <header>
-                            <h2>{{ jobPost.jobTitle }}</h2>
+                            <a href="{{ path('job_post_view', {'id': jobPost.id}) }}"><h2>{{ jobPost.jobTitle }}</h2></a>
                         </header>
 
                         <p>

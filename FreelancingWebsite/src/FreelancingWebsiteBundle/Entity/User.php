@@ -264,6 +264,27 @@ class User implements UserInterface
     }
 
     /**
+     * @param JobPost $jobPost
+     *
+     * @return bool
+     */
+    public function isJobPostAuthor(JobPost $jobPost)
+    {
+        return $jobPost->getClientId() == $this->getId();
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        return in_array('ROLE_ADMIN', $this->getRoles());
+    }
+
+
+
+
+    /**
      * Returns the salt that was originally used to encode the password.
      *
      * This can return null if the password was not encoded using a salt.

@@ -11,11 +11,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="UserController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/FreelancingWebsiteBundle/Controller/UserController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="288">
-              <caret line="16" column="57" lean-forward="true" selection-start-line="16" selection-start-column="57" selection-end-line="16" selection-end-column="57" />
+              <caret line="16" column="57" lean-forward="false" selection-start-line="16" selection-start-column="57" selection-end-line="16" selection-end-column="57" />
               <folding>
                 <element signature="e#55#96#0#PHP" expanded="true" />
               </folding>
@@ -23,11 +23,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="User.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/FreelancingWebsiteBundle/Entity/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="234" column="0" lean-forward="false" selection-start-line="234" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
+            <state relative-caret-position="689">
+              <caret line="280" column="57" lean-forward="false" selection-start-line="280" selection-start-column="57" selection-end-line="280" selection-end-column="57" />
               <folding>
                 <element signature="e#51#99#0#PHP" expanded="true" />
               </folding>
@@ -150,8 +150,8 @@
         <option value="$PROJECT_DIR$/app/Resources/views/jobPost/job_post.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/default/index.html.twig" />
         <option value="$PROJECT_DIR$/src/FreelancingWebsiteBundle/Entity/Role.php" />
-        <option value="$PROJECT_DIR$/src/FreelancingWebsiteBundle/Entity/User.php" />
         <option value="$PROJECT_DIR$/src/FreelancingWebsiteBundle/Controller/UserController.php" />
+        <option value="$PROJECT_DIR$/src/FreelancingWebsiteBundle/Entity/User.php" />
       </list>
     </option>
   </component>
@@ -319,12 +319,12 @@
       <workItem from="1513014300976" duration="7552000" />
       <workItem from="1513178042740" duration="15989000" />
       <workItem from="1513260137976" duration="2319000" />
-      <workItem from="1513279695392" duration="1751000" />
+      <workItem from="1513279695392" duration="2179000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29973000" />
+    <option name="totallyTimeSpent" value="30401000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="286" y="-4" width="1857" height="1092" extended-state="6" />
@@ -754,22 +754,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FreelancingWebsiteBundle/Entity/User.php">
+    <entry file="file://$PROJECT_DIR$/src/FreelancingWebsiteBundle/Controller/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="234" column="0" lean-forward="false" selection-start-line="234" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
+        <state relative-caret-position="288">
+          <caret line="16" column="57" lean-forward="false" selection-start-line="16" selection-start-column="57" selection-end-line="16" selection-end-column="57" />
           <folding>
-            <element signature="e#51#99#0#PHP" expanded="true" />
+            <element signature="e#55#96#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FreelancingWebsiteBundle/Controller/UserController.php">
+    <entry file="file://$PROJECT_DIR$/src/FreelancingWebsiteBundle/Entity/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="57" lean-forward="true" selection-start-line="16" selection-start-column="57" selection-end-line="16" selection-end-column="57" />
+        <state relative-caret-position="689">
+          <caret line="280" column="57" lean-forward="false" selection-start-line="280" selection-start-column="57" selection-end-line="280" selection-end-column="57" />
           <folding>
-            <element signature="e#55#96#0#PHP" expanded="true" />
+            <element signature="e#51#99#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

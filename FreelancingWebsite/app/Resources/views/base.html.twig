@@ -44,8 +44,23 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="{{ path('my_job_posts') }}">
+                                    My Job Posts
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{{ path('job_post_create') }}">
-                                    Hire a freelancer
+                                    Create Job Post
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('find_freelancer') }}">
+                                    All freelancers
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('all_clients_view') }}">
+                                    All clients
                                 </a>
                             </li>
                             <li>
@@ -53,6 +68,7 @@
                                     Logout
                                 </a>
                             </li>
+
                         {% else %}
                             <li>
                                 <a href="{{ path('user_register') }}">

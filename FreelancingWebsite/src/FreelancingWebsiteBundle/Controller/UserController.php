@@ -2,6 +2,7 @@
 
 namespace FreelancingWebsiteBundle\Controller;
 
+use FreelancingWebsiteBundle\Entity\JobPost;
 use FreelancingWebsiteBundle\Entity\Role;
 use FreelancingWebsiteBundle\Entity\User;
 use FreelancingWebsiteBundle\Form\UserType;
@@ -71,6 +72,18 @@ class UserController extends Controller
     }
 
     /**
+     * @Route("/freelancers/find", name="find_freelancer")
+     * @param Request $request
+     * @return Response
+     */
+    public function viewAllFreelancers()
+    {
+        $freelancers = $this->getDoctrine()->getRepository(User::class)->findAll();
+
+        return $this->render('users/find_freelancer.html.twig', ['freelancers' => $freelancers]);
+    }
+
+    /**
      * @Route("/client/{id}", name="client_profile_view")
      * @param Request $request
      * @return Response
@@ -80,5 +93,17 @@ class UserController extends Controller
         $client = $this->getDoctrine()->getRepository(User::class)->find($id);
 
         return $this->render('users/client_profile.html.twig', ['client' => $client]);
+    }
+
+    /**
+     * @Route("/clients", name="all_clients_view")
+     * @param Request $request
+     * @return Response
+     */
+    public function viewAllClients()
+    {
+        $clients = $this->getDoctrine()->getRepository(User::class)->findAll();
+
+        return $this->render('users/all_clients.html.twig', ['clients' => $clients]);
     }
 }

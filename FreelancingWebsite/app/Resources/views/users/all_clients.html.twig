@@ -3,26 +3,22 @@
 {% block body %}
     <div class="container body-content">
         <div class="row well">
-            <h1>All Job Posts</h1>
-            {% for jobPost in jobPosts %}
+            <h1>All Clients</h1>
+            {% for client in clients %}
                 <div class="col-md-12">
                     <article>
                         <header>
-                            <a href="{{ path('single_job_post_view', {'id': jobPost.id}) }}"><h2>{{ jobPost.jobTitle }}</h2></a>
+                            <a href="{{ path('client_profile_view', {'id': client.id}) }}"><h2>{{ client.getFirstName }} {{ client.getLastName }}</h2></a>
                         </header>
 
                         <p>
-                            {{ jobPost.jobDescription }}
+                            {{ client.email }}
                         </p>
-
-                        <small class="author">
-                            {{ jobPost.client.getFirstName }} {{ jobPost.client.getLastName }}
-                        </small>
 
                         <footer>
                             <div class="pull-right">
                                 <a class="btn btn-default btn-xs"
-                                   href="{{ path('single_job_post_view', {'id': jobPost.id}) }}">Read more &raquo;</a>
+                                   href="{{ path('client_profile_view', {'id': client.id}) }}">View Profile&raquo;</a>
                             </div>
                         </footer>
                     </article>

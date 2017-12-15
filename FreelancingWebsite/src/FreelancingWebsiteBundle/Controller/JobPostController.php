@@ -43,14 +43,28 @@ class JobPostController extends Controller
     /**
      * @param $id
      *
-     * @Route("/jobPost/{id}", name="job_post_view")
+     * @Route("/jobPost/{id}", name="single_job_post_view")
      * @return Response
      */
-    public function viewAction($id)
+    public function viewSingleAction($id)
     {
         $jobPost = $this->getDoctrine()->getRepository(JobPost::class)->find($id);
 
-        return $this->render('jobPost/job_post.html.twig', ['jobPost' => $jobPost]);
+        return $this->render('jobPost/single_job_post.html.twig', ['jobPost' => $jobPost]);
+    }
+
+    /**
+     * @Route("/my_job_posts", name="my_job_posts")
+     * @param Request $request
+     * @return Response
+     */
+    public function myJobPostsAction(Request $request)
+    {
+        $myId = $this->getUser()->getId();
+
+        $myJobPosts = $this->getDoctrine()->getRepository(JobPost::class)->findBy(['clientId' => $myId]);
+
+        return $this->render('jobPost/my_job_posts.html.twig', ['myJobPosts' => $myJobPosts]);
     }
 
     /**

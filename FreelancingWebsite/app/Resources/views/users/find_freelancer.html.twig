@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container body-content">
+        <div class="row well">
+            <div class="inner-box-wrapper">
+                <h1>Find Freelancers</h1>
+                {% for freelancer in freelancers %}
+                    <div class="col-md-12">
+                        <article>
+                            <header>
+                                <a href="{{ path('freelancer_profile_view', {'id': freelancer.id}) }}"><h2>{{ freelancer.getFirstName }} {{ freelancer.getLastName }}</h2></a>
+                            </header>
+
+                            <p>
+                                {{ freelancer.email }}
+                            </p>
+
+                            <footer>
+                                <div class="pull-right">
+                                    <a class="btn btn-default btn-xs"
+                                       href="{{ path('freelancer_profile_view', {'id': freelancer.id}) }}">View Profile&raquo;</a>
+                                </div>
+                            </footer>
+                        </article>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

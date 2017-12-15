@@ -82,6 +82,7 @@ class User implements UserInterface
     {
         $this->dateRegistered = new \DateTime('now');
         $this->jobPosts = new ArrayCollection();
+        $this->jobProposals = new ArrayCollection();
         $this->roles = new ArrayCollection();
     }
 
@@ -221,6 +222,8 @@ class User implements UserInterface
 
         return $this;
     }
+
+
 
     /**
      * Returns the roles granted to the user.

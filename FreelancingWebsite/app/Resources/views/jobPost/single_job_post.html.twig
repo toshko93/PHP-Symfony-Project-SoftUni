@@ -33,6 +33,7 @@
                             <a class="btn btn-danger btn-md" href="{{ path('job_post_delete', {'id': jobPost.id}) }}">Delete Job Post</a>
                             {% endif %}
 
+                            <a class="btn btn-success btn-md" href="{{ path('proposal_create', {'id': jobPost.id}) }}">Submit Proposal</a>
                             <a class="btn btn-default btn-md" href="{{ path('homepage') }}">Back &raquo;</a>
                         </div>
                     </footer>

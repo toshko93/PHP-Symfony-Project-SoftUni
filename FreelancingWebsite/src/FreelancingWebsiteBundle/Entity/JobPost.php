@@ -2,6 +2,7 @@
 
 namespace FreelancingWebsiteBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -64,6 +65,16 @@ class JobPost
      */
     private $client;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="FreelancingWebsiteBundle\Entity\Proposal", mappedBy="jobPost")
+     */
+    private $proposals;
+
+    /**
+     * JobPost constructor.
+     */
     public function __construct()
     {
         $this->dateCreated = new \DateTime('now');
@@ -185,6 +196,8 @@ class JobPost
     public function setClientId($clientId)
     {
         $this->clientId = $clientId;
+
+        return $this;
     }
 
     /**
@@ -213,6 +226,26 @@ class JobPost
     public function getClient()
     {
         return $this->client;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProposals()
+    {
+        return $this->proposals;
+    }
+
+    /**
+     * @param Proposal $proposal
+     *
+     * @return JobPost
+     */
+    public function addProposal(Proposal $proposal)
+    {
+        $this->proposals[] = $proposal;
+
+        return $this;
     }
 }
 

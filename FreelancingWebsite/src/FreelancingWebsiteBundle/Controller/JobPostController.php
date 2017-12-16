@@ -50,7 +50,7 @@ class JobPostController extends Controller
     {
         $jobPost = $this->getDoctrine()->getRepository(JobPost::class)->find($id);
 
-        return $this->render('jobPost/single_job_post.html.twig', ['jobPost' => $jobPost]);
+        return $this->render('jobPost/single.html.twig', ['jobPost' => $jobPost]);
     }
 
     /**

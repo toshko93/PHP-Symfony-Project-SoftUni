@@ -68,6 +68,13 @@ class User implements UserInterface
     /**
      * @var ArrayCollection
      *
+     * @ORM\OneToMany(targetEntity="FreelancingWebsiteBundle\Entity\Proposal", mappedBy="freelancer")
+     */
+    private $proposals;
+
+    /**
+     * @var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="FreelancingWebsiteBundle\Entity\Role", inversedBy="users")
      * @ORM\JoinTable(name="users_roles",
      *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
@@ -82,7 +89,7 @@ class User implements UserInterface
     {
         $this->dateRegistered = new \DateTime('now');
         $this->jobPosts = new ArrayCollection();
-        $this->jobProposals = new ArrayCollection();
+        $this->proposals = new ArrayCollection();
         $this->roles = new ArrayCollection();
     }
 
@@ -223,7 +230,25 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProposals()
+    {
+        return $this->proposals;
+    }
 
+    /**
+     * @param Proposal $proposal
+     *
+     * @return User
+     */
+    public function addProposal(Proposal $proposal)
+    {
+        $this->proposals[] = $proposal;
+
+        return $this;
+    }
 
     /**
      * Returns the roles granted to the user.

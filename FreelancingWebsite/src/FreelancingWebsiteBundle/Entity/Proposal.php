@@ -91,11 +91,11 @@ class Proposal
     }
 
     /**
-     * @param \FreelancingWebsiteBundle\Entity\JobPost $client
+     * @param integer $jobPostId
      *
      * @return Proposal
      */
-    public function setJobPostId(User $jobPostId)
+    public function setJobPostId(int $jobPostId)
     {
         $this->jobPostId = $jobPostId;
 
@@ -108,6 +108,27 @@ class Proposal
     public function getJobPostId()
     {
         return $this->jobPostId;
+    }
+
+    /**
+     * @param \FreelancingWebsiteBundle\Entity\JobPost $jobPost
+     *
+     * @return Proposal
+     */
+
+    public function setJobPost(JobPost $jobPost = null)
+    {
+        $this->jobPost = $jobPost;
+
+        return $this;
+    }
+
+    /**
+     * @return \FreelancingWebsiteBundle\Entity\JobPost
+     */
+    public function getJobPost()
+    {
+        return $this->jobPost;
     }
 
     /**
@@ -183,13 +204,11 @@ class Proposal
     }
 
     /**
-     * Set freelancerId
-     *
      * @param integer $freelancerId
      *
      * @return Proposal
      */
-    public function setClientId($freelancerId)
+    public function setFreelancerId(int $freelancerId)
     {
         $this->freelancerId = $freelancerId;
 
@@ -199,13 +218,14 @@ class Proposal
     /**
      * @return int
      */
-    public function getClientId()
+    public function getFreelancerId()
     {
         return $this->freelancerId;
     }
 
+
     /**
-     * @param \FreelancingWebsiteBundle\Entity\User $client
+     * @param \FreelancingWebsiteBundle\Entity\User $freelancer
      *
      * @return Proposal
      */
@@ -222,26 +242,6 @@ class Proposal
     public function getFreelancer()
     {
         return $this->freelancer;
-    }
-
-    /**
-     * @param \FreelancingWebsiteBundle\Entity\JobPost $jobPost
-     *
-     * @return Proposal
-     */
-    public function setJobPost(JobPost $jobPost = null)
-    {
-        $this->jobPost = $jobPost;
-
-        return $this;
-    }
-
-    /**
-     * @return \FreelancingWebsiteBundle\Entity\JobPost
-     */
-    public function getJobPost()
-    {
-        return $this->jobPost;
     }
 }
 

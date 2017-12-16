@@ -46,17 +46,4 @@ class ProposalController extends Controller
             'jobPost' => $jobPost
         ]);
     }
-
-    /**
-     * @param $id
-     *
-     * @Route("/jobPost/{id}", name="single_job_post_view")
-     * @return Response
-     */
-    public function viewSingleAction($id)
-    {
-        $jobPost = $this->getDoctrine()->getRepository(JobPost::class)->find($id);
-
-        return $this->render('jobPost/single_job_post.html.twig', ['jobPost' => $jobPost]);
-    }
 }

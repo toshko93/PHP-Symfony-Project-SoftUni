@@ -46,4 +46,35 @@ class ProposalController extends Controller
             'jobPost' => $jobPost
         ]);
     }
+
+    /**
+     * @param $id, $proposal_id
+     *
+     * @Route("/jobPost/{id}/proposal/{proposal_id}", name="single_proposal_view")
+     * @return Response
+     */
+    public function viewSingleAction($id, $proposal_id)
+    {
+        $jobPost = $this->getDoctrine()->getRepository(JobPost::class)->find($id);
+        $proposal = $this->getDoctrine()->getRepository(Proposal::class)->find($proposal_id);
+
+        return $this->render('proposal/single.html.twig', ['jobPost' => $jobPost, 'proposal' =>$proposal]);
+    }
+
+    /**
+     * @Route("/jobPost/{id}/proposals", name="all_proposals_for_single_job_post")
+     * @param Request $request
+     * @return Response
+     */
+    public function viewAllProposalsForSingleJobPost($id, Request $request)
+    {
+//        $myId = $this->getUser()->getId();
+//
+//        $myJobPosts = $this->getDoctrine()->getRepository(JobPost::class)->findBy(['clientId' => $myId]);
+//
+//        return $this->render('jobPost/my_job_posts.html.twig', ['myJobPosts' => $myJobPosts]);
+        $jobPost = $this->getDoctrine()->getRepository(JobPost::class)->find($id);
+
+        return $this->render('proposal/all.html.twig', ['jobPost' => $jobPost]);
+    }
 }

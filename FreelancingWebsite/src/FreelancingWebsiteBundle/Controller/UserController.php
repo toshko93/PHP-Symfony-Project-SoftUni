@@ -31,9 +31,11 @@ class UserController extends Controller
             $user->setPassword($password);
 
             $roleRepository = $this->getDoctrine()->getRepository(Role::class);
-            $userRole = $roleRepository->findOneBy(['name' => 'ROLE_USER']);
+            $freelancerRole = $roleRepository->findOneBy(['name' => 'ROLE_FREELANCER']);
+            $clientRole = $roleRepository->findOneBy(['name' => 'ROLE_CLIENT']);
 
-            $user->addRole($userRole);
+            $user->addRole($freelancerRole);
+            $user->addRole($clientRole);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
@@ -96,7 +98,7 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/clients", name="all_clients_view")
+     * @Route("/admin/clients", name="all_clients_view")
      * @param Request $request
      * @return Response
      */
@@ -104,6 +106,6 @@ class UserController extends Controller
     {
         $clients = $this->getDoctrine()->getRepository(User::class)->findAll();
 
-        return $this->render('users/all_clients.html.twig', ['clients' => $clients]);
+        return $this->render('admin/all_clients.html.twig', ['clients' => $clients]);
     }
 }

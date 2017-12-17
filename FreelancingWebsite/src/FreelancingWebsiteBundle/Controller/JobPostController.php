@@ -44,6 +44,7 @@ class JobPostController extends Controller
      * @param $id
      *
      * @Route("/jobPost/{id}", name="single_job_post_view")
+     *
      * @return Response
      */
     public function viewSingleAction($id)
@@ -55,6 +56,8 @@ class JobPostController extends Controller
 
     /**
      * @Route("/my_job_posts", name="my_job_posts")
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     *
      * @param Request $request
      * @return Response
      */

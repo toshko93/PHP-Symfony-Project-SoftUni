@@ -11,6 +11,7 @@
     <title>{% block title %}Freelancers Website{% endblock %}</title>
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/custom-styles.css') }}">
         <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
@@ -20,7 +21,7 @@
 
 {% block header %}
     <header>
-        <div class="navbar navbar-default navbar-static-top" role="navigation">
+            <div class="navbar navbar-default navbar-static-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
                     <a href="{{ path('homepage') }}" class="navbar-brand">FREELANCERS WEBSITE</a>
@@ -37,49 +38,27 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
+                        {% if app.getUser() and app.getUser().isAdmin() %}
+                            <li><a href="{{ path('all_clients_view') }}">All clients</a></li>
+                        {% endif %}
                         {% if app.user %}
-                            <li>
-                                <a href="{{ path('my_profile_view') }}">
-                                    My Profile
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ path('my_job_posts') }}">
-                                    My Job Posts
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ path('job_post_create') }}">
-                                    Create Job Post
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ path('find_freelancer') }}">
-                                    All freelancers
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ path('all_clients_view') }}">
-                                    All clients
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ path('logout') }}">
-                                    Logout
-                                </a>
+                            {#<li><a href="{{ path('my_job_posts') }}">My Job Posts</a></li>#}
+                            <li><a href="{{ path('find_freelancer') }}">Find a freelancer</a></li>
+                            <li><a href="{{ path('job_post_create') }}">Create Job Post</a></li>
+                            <li class="dropdown">
+                                <div class="profile-icon-div">
+                                    <img src="{{ asset('favicon.ico') }}" />
+                                </div>
+                                <div class="dropdown-content">
+                                    <a href="{{ path('my_profile_view') }}">My Profile</a>
+                                    <a href="{{ path('my_job_posts') }}">My Job Posts</a>
+                                    <a href="{{ path('logout') }}">Logout</a>
+                                </div>
                             </li>
 
                         {% else %}
-                            <li>
-                                <a href="{{ path('user_register') }}">
-                                    REGISTER
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ path('security_login') }}">
-                                    LOGIN
-                                </a>
-                            </li>
+                            <li><a href="{{ path('user_register') }}">REGISTER</a></li>
+                            <li><a href="{{ path('security_login') }}">LOGIN</a></li>
                         {% endif %}
                     </ul>
                 </div>

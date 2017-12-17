@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container body-content">
+        <div class="row well">
+            <div class="col-md-12">
+                <article>
+                    <h1>Single Proposal</h1>
+
+                    <div>
+                        <h2>{{ jobPost.jobTitle }}</h2>
+
+                        <p>{{ jobPost.dateCreated|date('Y-m-d') }}</p>
+                        <p>{{ jobPost.jobDescription }}</p>
+                        <p>{{ jobPost.clientBudget }}</p>
+
+                        <small class="author">{{ jobPost.client.getFirstName }} {{ jobPost.client.getLastName }}</small>
+                    </div>
+
+                    <div>
+                        <h2>Proposal</h2>
+                        <p>{{ proposal.dateCreated|date('Y-m-d') }}</p>
+                        <p>{{ proposal.coverLetter }}</p>
+                        <p>{{ proposal.proposedPrice }}</p>
+                    </div>
+
+                    <footer>
+                        <div class="pull-right">
+
+                            {% if app.getUser() and (app.getUser().isJobPostAuthor(jobPost) or app.getUser().isAdmin()) %}
+                                {#<a class="btn btn-success btn-md" href="{{ path('job_post_edit', {'id': jobPost.id}) }}">Edit Job Post</a>#}
+                                {#<a class="btn btn-danger btn-md" href="{{ path('job_post_delete', {'id': jobPost.id}) }}">Delete Job Post</a>#}
+                            {% endif %}
+
+                            {#<a class="btn btn-success btn-md" href="{{ path('proposal_create', {'id': jobPost.id}) }}">Submit Proposal</a>#}
+                            <a class="btn btn-default btn-md" href="{{ path('homepage') }}">Back &raquo;</a>
+                        </div>
+                    </footer>
+                </article>
+            </div>
+        </div>
+    </div>
+{% endblock %}

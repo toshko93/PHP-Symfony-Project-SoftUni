@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container body-content">
+        <div class="row well">
+            <h1>All Proposals</h1>
+            {% for proposal in jobPost.proposals %}
+                <div class="col-md-12">
+                    <article>
+                        <header>
+                            <a href="{{ path('single_proposal_view', {'id': jobPost.id, 'proposal_id': proposal.id}) }}">
+                                <h2>{{ proposal.freelancer.getFirstName }} {{ proposal.freelancer.getLastName }}</h2>
+                            </a>
+                        </header>
+
+                        <p>
+                            {{ proposal.coverLetter }}
+                        </p>
+
+                        <small class="author">
+                            {{ proposal.freelancer.getFirstName }} {{ proposal.freelancer.getLastName }}
+                        </small>
+
+                        <footer>
+                            <div class="pull-right">
+                                <a class="btn btn-default btn-xs"
+                                   href="{{ path('single_proposal_view', {'id': jobPost.id, 'proposal_id': proposal.id}) }}">Read more &raquo;</a>
+                            </div>
+                        </footer>
+                    </article>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

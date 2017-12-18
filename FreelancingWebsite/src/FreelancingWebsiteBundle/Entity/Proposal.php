@@ -73,6 +73,13 @@ class Proposal
     private $freelancer;
 
     /**
+     * @var Contract
+     *
+     * @ORM\OneToOne(targetEntity="FreelancingWebsiteBundle\Entity\Contract", mappedBy="jobPost")
+     */
+    private $contract;
+
+    /**
      * Proposal constructor.
      */
     public function __construct()
@@ -242,6 +249,26 @@ class Proposal
     public function getFreelancer()
     {
         return $this->freelancer;
+    }
+
+    /**
+     * @param \FreelancingWebsiteBundle\Entity\Contract $contract
+     *
+     * @return Proposal
+     */
+    public function setContract(Contract $contract = null)
+    {
+        $this->contract = $contract;
+
+        return $this;
+    }
+
+    /**
+     * @return \FreelancingWebsiteBundle\Entity\Contract
+     */
+    public function getContract()
+    {
+        return $this->contract;
     }
 }
 

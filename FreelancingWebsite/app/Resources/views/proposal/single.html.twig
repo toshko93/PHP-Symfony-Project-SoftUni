@@ -33,6 +33,7 @@
                             {% endif %}
 
                             {#<a class="btn btn-success btn-md" href="{{ path('proposal_create', {'id': jobPost.id}) }}">Submit Proposal</a>#}
+                            <a class="btn btn-success btn-md" href="{{ path('contract_create', {'job_post_id': jobPost.id, 'proposal_id': proposal.id}) }}">Hire Freelancer</a>
                             <a class="btn btn-default btn-md" href="{{ path('homepage') }}">Back &raquo;</a>
                         </div>
                     </footer>

@@ -73,6 +73,13 @@ class JobPost
     private $proposals;
 
     /**
+     * @var Contract
+     *
+     * @ORM\OneToOne(targetEntity="FreelancingWebsiteBundle\Entity\Contract", mappedBy="jobPost")
+     */
+    private $contract;
+
+    /**
      * JobPost constructor.
      */
     public function __construct()
@@ -246,6 +253,26 @@ class JobPost
         $this->proposals[] = $proposal;
 
         return $this;
+    }
+
+    /**
+     * @param \FreelancingWebsiteBundle\Entity\Contract $contract
+     *
+     * @return JobPost
+     */
+    public function setContract(Contract $contract = null)
+    {
+        $this->contract = $contract;
+
+        return $this;
+    }
+
+    /**
+     * @return \FreelancingWebsiteBundle\Entity\Contract
+     */
+    public function getContract()
+    {
+        return $this->contract;
     }
 }
 

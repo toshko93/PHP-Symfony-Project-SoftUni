@@ -75,7 +75,7 @@ class Proposal
     /**
      * @var Contract
      *
-     * @ORM\OneToOne(targetEntity="FreelancingWebsiteBundle\Entity\Contract", mappedBy="jobPost")
+     * @ORM\OneToOne(targetEntity="FreelancingWebsiteBundle\Entity\Contract", mappedBy="proposal")
      */
     private $contract;
 

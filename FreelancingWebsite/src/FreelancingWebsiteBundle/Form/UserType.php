@@ -17,8 +17,14 @@ class UserType extends AbstractType
             ->add("password", TextType::class)
             ->add("firstName", TextType::class)
             ->add("lastName", TextType::class);
-//            ->add("register_as_freelancer", CheckboxType::class)
-//            ->add("register_as_client", CheckboxType::class);
+//            ->add("register_as_freelancer", CheckboxType::class, array(
+//                'label'    => 'Freelancer',
+//                'required' => false,
+//            ))
+//            ->add("register_as_client", CheckboxType::class, array(
+//                'label'    => 'Client',
+//                'required' => false,
+//            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)

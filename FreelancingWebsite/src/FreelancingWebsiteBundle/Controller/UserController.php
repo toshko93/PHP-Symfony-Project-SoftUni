@@ -31,11 +31,16 @@ class UserController extends Controller
             $user->setPassword($password);
 
             $roleRepository = $this->getDoctrine()->getRepository(Role::class);
-            $freelancerRole = $roleRepository->findOneBy(['name' => 'ROLE_FREELANCER']);
-            $clientRole = $roleRepository->findOneBy(['name' => 'ROLE_CLIENT']);
 
-            $user->addRole($freelancerRole);
-            $user->addRole($clientRole);
+            if ($request->get('register_as_client')) {
+                $clientRole = $roleRepository->findOneBy(['name' => 'ROLE_CLIENT']);
+                $user->addRole($clientRole);
+            }
+
+            if ($request->get('register_as_freelancer')) {
+                $freelancerRole = $roleRepository->findOneBy(['name' => 'ROLE_FREELANCER']);
+                $user->addRole($freelancerRole);
+            }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);

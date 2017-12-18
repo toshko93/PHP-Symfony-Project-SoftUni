@@ -3,28 +3,26 @@
 {% block body %}
     <div class="container body-content">
         <div class="row well">
-            <h1>All Proposals</h1>
-            {% for proposal in jobPost.proposals %}
+            <h1>My Contracts</h1>
+            {% for contract in myContracts %}
                 <div class="col-md-12">
                     <article>
                         <header>
-                            <a href="{{ path('single_proposal_view', {'id': proposal.id}) }}">
-                                <h2>{{ proposal.freelancer.getFirstName }} {{ proposal.freelancer.getLastName }}</h2>
-                            </a>
+                            Contract for: <a href="{{ path('single_contract_view', {'id': contract.id}) }}"><h2>{{ contract.jobPost.jobTitle }}</h2></a>
                         </header>
 
                         <p>
-                            {{ proposal.coverLetter }}
+                            {{ contract.jobPost.jobDescription }}
                         </p>
 
                         <small class="author">
-                            {{ proposal.freelancer.getFirstName }} {{ proposal.freelancer.getLastName }}
+                            {{ contract.jobPost.client.getFirstName }} {{ contract.jobPost.client.getLastName }}
                         </small>
 
                         <footer>
                             <div class="pull-right">
                                 <a class="btn btn-default btn-xs"
-                                   href="{{ path('single_proposal_view', {'id': jobPost.id, 'proposal_id': proposal.id}) }}">Read more &raquo;</a>
+                                   href="{{ path('single_job_post_view', {'id': contract.jobPost.id}) }}">Read more &raquo;</a>
                             </div>
                         </footer>
                     </article>

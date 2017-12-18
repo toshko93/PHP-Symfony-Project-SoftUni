@@ -5,6 +5,7 @@ namespace FreelancingWebsiteBundle\Controller;
 use FreelancingWebsiteBundle\Entity\Contract;
 use FreelancingWebsiteBundle\Entity\JobPost;
 use FreelancingWebsiteBundle\Entity\Proposal;
+use FreelancingWebsiteBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -30,17 +31,24 @@ class ContractController extends Controller
         $proposal = $this->getDoctrine()->getRepository(Proposal::class)->find($proposalId);
         $priceAgreed = $proposal->getProposedPrice();
 
+        $clientId = $jobPost->getClientId();
+        $freelancerId = $proposal->getFreelancerId();
+
+        $client = $this->getDoctrine()->getRepository(User::class)->find($clientId);
+        $freelancer = $this->getDoctrine()->getRepository(User::class)->find($freelancerId);
+
         $contract = new Contract();
         $contract->setSumAgreed($priceAgreed);
         $contract->setJobPost($jobPost);
         $contract->setProposal($proposal);
+        $contract->setClient($client);
+        $contract->setFreelancer($freelancer);
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($contract);
         $em->flush();
 
-        return $this->redirectToRoute('single_contract_view', ['id' => $jobPostId, 'jobPost' => $jobPost, 'contract' => $contract]);
-//        return $this->render('jobPost/create.html.twig', ['form' => $form->createView()]);
+        return $this->redirectToRoute('single_contract_view', ['id' => $contract->getId(), 'jobPost' => $jobPost, 'contract' => $contract]);
     }
 
     /**
@@ -56,5 +64,21 @@ class ContractController extends Controller
         $jobPost = $this->getDoctrine()->getRepository(JobPost::class)->find($contract->getJobPostId());
 
         return $this->render('contract/single.html.twig', ['jobPost' => $jobPost, 'contract' => $contract]);
+    }
+
+    /**
+     * @Route("/my_contracts", name="my_contracts")
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function viewMyContractsAction(Request $request)
+    {
+        $myId = $this->getUser()->getId();
+
+        $myContracts = $this->getDoctrine()->getRepository(Contract::class)->findBy(['clientId' => $myId]);
+
+        return $this->render('contract/my_contracts.html.twig', ['myContracts' => $myContracts]);
     }
 }

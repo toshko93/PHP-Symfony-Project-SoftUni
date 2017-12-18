@@ -83,6 +83,20 @@ class User implements UserInterface
     private $roles;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="FreelancingWebsiteBundle\Entity\Contract", mappedBy="client")
+     */
+    private $contractsAsClient;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="FreelancingWebsiteBundle\Entity\Contract", mappedBy="freelacer")
+     */
+    private $contractsAsFreelancer;
+
+    /**
      * User constructor.
      */
     public function __construct()
@@ -91,6 +105,8 @@ class User implements UserInterface
         $this->jobPosts = new ArrayCollection();
         $this->proposals = new ArrayCollection();
         $this->roles = new ArrayCollection();
+        $this->contractsAsClient = new ArrayCollection();
+        $this->contractsAsFreelancer = new ArrayCollection();
     }
 
     /**

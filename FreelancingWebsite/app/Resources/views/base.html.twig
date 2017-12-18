@@ -39,13 +39,18 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         {% if app.getUser() and app.getUser().isAdmin() %}
-                            <li><a href="{{ path('all_clients_view') }}">All clients</a></li>
                         {% endif %}
                         {% if app.user %}
-                            {#<li><a href="{{ path('my_job_posts') }}">My Job Posts</a></li>#}
-                            <li><a href="{{ path('homepage') }}">Find a job</a></li>
-                            <li><a href="{{ path('find_freelancer') }}">Find a freelancer</a></li>
-                            <li><a href="{{ path('job_post_create') }}">Create Job Post</a></li>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li><a href="{{ path('all_clients_view') }}">All clients</a></li>
+                            {%endif%}
+                            {% if is_granted('ROLE_FREELANCER') %}
+                                <li><a href="{{ path('homepage') }}">Find a job</a></li>
+                            {%endif%}
+                            {% if is_granted('ROLE_CLIENT') %}
+                                <li><a href="{{ path('find_freelancer') }}">Find a freelancer</a></li>
+                                <li><a href="{{ path('job_post_create') }}">Create Job Post</a></li>
+                            {%endif%}
                             <li class="dropdown">
                                 <div class="profile-icon-div">
                                     <img src="{{ asset('favicon.ico') }}" />
@@ -53,6 +58,7 @@
                                 <div class="dropdown-content">
                                     <a href="{{ path('my_profile_view') }}">My Profile</a>
                                     <a href="{{ path('my_job_posts') }}">My Job Posts</a>
+                                    <a href="{{ path('my_contracts') }}">My Contracts</a>
                                     <a href="{{ path('logout') }}">Logout</a>
                                 </div>
                             </li>

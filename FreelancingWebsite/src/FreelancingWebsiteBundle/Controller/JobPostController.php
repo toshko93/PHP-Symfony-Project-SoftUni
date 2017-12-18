@@ -47,10 +47,8 @@ class JobPostController extends Controller
      *
      * @return Response
      */
-    public function viewSingleAction($id)
+    public function viewSingleAction(JobPost $jobPost)
     {
-        $jobPost = $this->getDoctrine()->getRepository(JobPost::class)->find($id);
-
         return $this->render('jobPost/single.html.twig', ['jobPost' => $jobPost]);
     }
 

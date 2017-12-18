@@ -95,6 +95,36 @@ class Contract
     private $proposal;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="clientId", type="integer")
+     */
+    private $clientId;
+
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="FreelancingWebsiteBundle\Entity\User", inversedBy="contractsAsClient")
+     * @ORM\JoinColumn(name="clientId", referencedColumnName="id")
+     */
+    private $client;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="freelacerId", type="integer")
+     */
+    private $freelacerId;
+
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="FreelancingWebsiteBundle\Entity\User", inversedBy="contractsAsFreelancer")
+     * @ORM\JoinColumn(name="freelacerId", referencedColumnName="id")
+     */
+    private $freelacer;
+
+    /**
      * Contract constructor.
      */
     public function __construct()
@@ -340,6 +370,89 @@ class Contract
     public function getProposal()
     {
         return $this->proposal;
+    }
+
+
+
+
+
+
+    /**
+     * @param int $clientId
+     *
+     * @return Contract
+     */
+    public function setClientId(int $clientId)
+    {
+        $this->clientId = $clientId;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getClientId()
+    {
+        return $this->clientId;
+    }
+
+    /**
+     * @param \FreelancingWebsiteBundle\Entity\User $client
+     */
+    public function setClient(User $client = null)
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * @return \FreelancingWebsiteBundle\Entity\User
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+
+
+    /**
+     * @param int $freelancerId
+     *
+     * @return Contract
+     */
+    public function setFreelancerId($freelancerId)
+    {
+        $this->freelacerId = $freelancerId;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getFreelancerId()
+    {
+        return $this->freelacerId;
+    }
+
+    /**
+     * @param \FreelancingWebsiteBundle\Entity\User $freelancer
+     */
+    public function setFreelancer(User $freelancer = null)
+    {
+        $this->freelacer = $freelancer;
+
+        return $this;
+    }
+
+    /**
+     * @return \FreelancingWebsiteBundle\Entity\User
+     */
+    public function getFreelancer()
+    {
+        return $this->freelacer;
     }
 }
 

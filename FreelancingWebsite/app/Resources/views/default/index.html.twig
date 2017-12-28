@@ -3,31 +3,61 @@
 {% block body %}
     <div class="container body-content">
         <div class="row well">
-            <h1>All Job Posts</h1>
-            {% for jobPost in jobPosts %}
-                <div class="col-md-12">
-                    <article>
-                        <header>
-                            <a href="{{ path('single_job_post_view', {'id': jobPost.id}) }}"><h2>{{ jobPost.jobTitle }}</h2></a>
-                        </header>
-
-                        <p>
-                            {{ jobPost.jobDescription }}
-                        </p>
-
-                        <small class="author">
-                            {{ jobPost.client.getFirstName }} {{ jobPost.client.getLastName }}
-                        </small>
-
-                        <footer>
-                            <div class="pull-right">
-                                <a class="btn btn-default btn-xs"
-                                   href="{{ path('single_job_post_view', {'id': jobPost.id}) }}">Read more &raquo;</a>
-                            </div>
-                        </footer>
-                    </article>
+            <div class="col-lg-12">
+                <div class="col-lg-3">
+                    <h2>All Job Posts</h2>
                 </div>
-            {% endfor %}
+                <div class="col-lg-9" style="margin-top: 24px;">
+                    <input type="text" id="search-job-input" />
+                    <button>Search</button>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="col-lg-3">
+                    <h3>Categories</h3>
+                    <h3>Filters</h3>
+                </div>
+                <div class="col-lg-9">
+                    {% for jobPost in jobPosts %}
+                        <article class="job-post-box-small">
+                            <div class="col-lg-10">
+                                <header>
+                                    <a href="{{ path('single_job_post_view', {'id': jobPost.id}) }}"><h3>{{ jobPost.jobTitle }}</h3></a>
+                                </header>
+
+                                <p>
+                                    Client Budget: ${{ jobPost.clientBudget }} | Posted on: {{ jobPost.dateCreated|date }}
+                                </p>
+
+                                <p>
+                                    {{ jobPost.getJobSummary }}
+                                </p>
+
+                                <p>
+                                    Proposals: {{ jobPost.proposals|length }}
+                                </p>
+
+                                <p>
+                                    Money Spent: {{ jobPost.proposals|length }}
+                                </p>
+
+                                <p>
+                                    Client: {{ jobPost.client.getFirstName }} {{ jobPost.client.getLastName }} | Money Spent: - | Location: -
+                                </p>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="pull-right">
+                                    <a class="btn btn-default btn-xs"
+                                       href="{{ path('single_job_post_view', {'id': jobPost.id}) }}">Read more &raquo;</a>
+                                </div>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+            </div>
+
         </div>
     </div>
 {% endblock %}
+
+

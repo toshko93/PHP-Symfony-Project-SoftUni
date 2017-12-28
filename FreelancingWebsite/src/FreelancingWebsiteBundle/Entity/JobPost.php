@@ -274,5 +274,12 @@ class JobPost
     {
         return $this->contract;
     }
+
+    public function getJobSummary()
+    {
+        $jobDescrLenght = strlen($this->getJobDescription());
+
+        return substr($this->getJobDescription(),0, $jobDescrLenght < 100 ? $jobDescrLenght : 100 );
+    }
 }
 

@@ -97,6 +97,13 @@ class User implements UserInterface
     private $contractsAsFreelancer;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="FreelancingWebsiteBundle\Entity\Notification", mappedBy="user")
+     */
+    private $notifications;
+
+    /**
      * User constructor.
      */
     public function __construct()

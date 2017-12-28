@@ -101,16 +101,4 @@ class UserController extends Controller
 
         return $this->render('users/client_profile.html.twig', ['client' => $client]);
     }
-
-    /**
-     * @Route("/admin/clients", name="all_clients_view")
-     * @param Request $request
-     * @return Response
-     */
-    public function viewAllClients()
-    {
-        $clients = $this->getDoctrine()->getRepository(User::class)->findAll();
-
-        return $this->render('admin/all_clients.html.twig', ['clients' => $clients]);
-    }
 }

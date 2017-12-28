@@ -32,8 +32,8 @@ class Category
     /**
      * @ORM\ManyToMany(targetEntity="category", mappedBy="parent")
      */
-
     private $children;
+
     /**
      *
      * @ORM\ManyToMany(targetEntity="category", inversedBy="children")
@@ -42,13 +42,7 @@ class Category
      *  inverseJoinColumns={@ORM\JoinColumn(name="parent_id", referencedColumnName="id")}
      *     )
      */
-
     private $parent;
-    /**
-     * Constructor
-     *
-     * ArrayCollection
-     */
 
     /**
      * Category constructor.

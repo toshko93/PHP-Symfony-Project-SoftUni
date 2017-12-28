@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container body-content">
+        <div class="row well">
+            <div class="inner-box-wrapper">
+                <div class="col-md-12">
+                    {% for skill in skills %}
+                        <div class="job-post-box-small">
+                            <div class="col-lg-10"></div>
+                            <div class="col-lg-2"></div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

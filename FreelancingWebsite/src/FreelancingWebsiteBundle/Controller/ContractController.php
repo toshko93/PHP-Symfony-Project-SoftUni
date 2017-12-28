@@ -4,6 +4,7 @@ namespace FreelancingWebsiteBundle\Controller;
 
 use FreelancingWebsiteBundle\Entity\Contract;
 use FreelancingWebsiteBundle\Entity\JobPost;
+use FreelancingWebsiteBundle\Entity\Notification;
 use FreelancingWebsiteBundle\Entity\Proposal;
 use FreelancingWebsiteBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -44,8 +45,17 @@ class ContractController extends Controller
         $contract->setClient($client);
         $contract->setFreelancer($freelancer);
 
+        // Notification create
+        $notification = new Notification();
+        $notification->setMessage("A contract has started on the job with id " . $jobPost->getId());
+        $notification->setUser($contract->getFreelancer());
+
         $em = $this->getDoctrine()->getManager();
         $em->persist($contract);
+        $em->flush();
+
+        $notification->setTargetLink("http://localhost:8000/contract/" . $contract->getId());
+        $em->persist($notification);
         $em->flush();
 
         return $this->redirectToRoute('single_contract_view', ['id' => $contract->getId(), 'jobPost' => $jobPost, 'contract' => $contract]);

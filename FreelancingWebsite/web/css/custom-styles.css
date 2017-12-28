@@ -15,7 +15,7 @@
     z-index: 1;
 }
 
-.dropdown-content a {
+.dropdown-content a, .dropdown-content header {
     display: block;
     padding: 12px 16px;
 }
@@ -26,4 +26,12 @@
 
 .profile-icon-div {
     height: 100%;
+}
+
+.job-post-box-small {
+    padding: 10px;
+    margin: 10px 0;
+    display: inline-block;
+    width: 100%;
+    background-color: #D3D3D3;
 }

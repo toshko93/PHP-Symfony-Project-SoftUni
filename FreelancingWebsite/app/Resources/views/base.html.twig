@@ -51,6 +51,14 @@
                                 <li><a href="{{ path('find_freelancer') }}">Find a freelancer</a></li>
                                 <li><a href="{{ path('job_post_create') }}">Create Job Post</a></li>
                             {%endif%}
+                            <li class="dropdown ajax">
+                                <div class="profile-icon-div">
+                                    <a href="#"><img src="{{ asset('favicon.ico') }}" /></a>
+                                </div>
+                                <div class="notifications-dropdown ajax-results dropdown-content" id="notifications-dropdown">
+
+                                </div>
+                            </li>
                             <li class="dropdown">
                                 <div class="profile-icon-div">
                                     <img src="{{ asset('favicon.ico') }}" />
@@ -97,6 +105,41 @@
     <script src="{{ asset('js/moment.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            $("li.dropdown.ajax").on("click", function(event){
+                $.ajax({
+                    url:        '/last_five_notifications/ajax',
+                    type:       'GET',
+                    dataType:   'json',
+                    async:      true,
+
+                    success: function(data, status) {
+                        var e = $('<header>Last 5 notifications</header>');
+                        $('#notifications-dropdown').html('');
+                        $('#notifications-dropdown').append(e);
+
+                        for(i = 0; i < data.length; i++) {
+                            notification = data[i];
+                            var e = $('<a href="#" id="notification-link"><div id="notification-message"></div></a>');
+
+                            var newLink = notification['link'];
+//                            e = e.replace("#", newLink);
+//                            console.log(newLink);
+
+                            e.attr("href", newLink);
+//                            $('#notification-link', e).prop("href", newLink);
+                            $('#notification-message', e).html(notification['message']);
+                            $('#notifications-dropdown').append(e);
+                        }
+                    },
+                    error : function(xhr, textStatus, errorThrown) {
+                        alert('Ajax request failed.');
+                    }
+                });
+            });
+        });
+    </script>
 {% endblock %}
 
 </body>

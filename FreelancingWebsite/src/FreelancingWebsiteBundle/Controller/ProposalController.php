@@ -3,6 +3,7 @@
 namespace FreelancingWebsiteBundle\Controller;
 
 use FreelancingWebsiteBundle\Entity\JobPost;
+use FreelancingWebsiteBundle\Entity\Notification;
 use FreelancingWebsiteBundle\Entity\Proposal;
 use FreelancingWebsiteBundle\Form\ProposalType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -34,8 +35,15 @@ class ProposalController extends Controller
             $proposal->setJobPost($jobPost);
             $proposal->setFreelancer($this->getUser());
 
+            // Notification create
+            $notification = new Notification();
+            $notification->setMessage("A new proposal has been submitted to your job offer with id " . $jobPost->getId());
+            $notification->setTargetLink("http://localhost:8000/jobPost/" . $jobPost->getId());
+            $notification->setUser($jobPost->getClient());
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($proposal);
+            $em->persist($notification);
             $em->flush();
 
             return $this->redirectToRoute('single_job_post_view', ['id' => $jobPost->getId()]);

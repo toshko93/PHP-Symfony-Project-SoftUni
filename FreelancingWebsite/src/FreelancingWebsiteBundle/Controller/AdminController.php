@@ -2,6 +2,8 @@
 
 namespace FreelancingWebsiteBundle\Controller;
 
+use FreelancingWebsiteBundle\Entity\Contract;
+use FreelancingWebsiteBundle\Entity\JobPost;
 use FreelancingWebsiteBundle\Entity\Skill;
 use FreelancingWebsiteBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -12,11 +14,21 @@ use Symfony\Component\HttpFoundation\Response;
 class AdminController extends Controller
 {
     /**
-     * @Route("/admin/clients", name="all_clients_view")
+     * @Route("/admin/job_posts", name="admin_all_job_posts")
+     */
+    public function allJobPostsAction(Request $request)
+    {
+        $jobPosts = $this->getDoctrine()->getRepository(JobPost::class)->findAll();
+
+        return $this->render('admin/all_job_posts.html.twig', ['jobPosts' => $jobPosts]);
+    }
+
+    /**
+     * @Route("/admin/clients", name="admin_all_clients_view")
      * @param Request $request
      * @return Response
      */
-    public function viewAllClients()
+    public function allClientsAction()
     {
         $clients = $this->getDoctrine()->getRepository(User::class)->findAll();
 
@@ -24,11 +36,23 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/skills", name="all_skills_view")
+     * @Route("/admin/contracts", name="admin_all_contracts_view")
      * @param Request $request
      * @return Response
      */
-    public function viewAllSkills()
+    public function allContractsAction()
+    {
+        $contracts = $this->getDoctrine()->getRepository(Contract::class)->findAll();
+
+        return $this->render('admin/all_contracts.html.twig', ['contracts' => $contracts]);
+    }
+
+    /**
+     * @Route("/admin/skills", name="admin_all_skills_view")
+     * @param Request $request
+     * @return Response
+     */
+    public function allSkillsAction()
     {
         $skills = $this->getDoctrine()->getRepository(Skill::class)->findAll();
 

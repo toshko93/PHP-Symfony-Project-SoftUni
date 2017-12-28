@@ -9,9 +9,9 @@
                         <h3>Add/Remove Skill tags</h3>
                     </div>
                     <div class="col-lg-9">
-                        {% for skill in skills %}
+                        {% for category in categories %}
                             <div class="job-post-box-small">
-                                <div class="col-lg-10">{{ skill.name }}</div>
+                                <div class="col-lg-10">{{ category.name }}</div>
                                 <div class="col-lg-2">Add/Remove</div>
                             </div>
                         {% endfor %}

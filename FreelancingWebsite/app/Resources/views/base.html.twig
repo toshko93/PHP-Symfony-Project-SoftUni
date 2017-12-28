@@ -42,7 +42,10 @@
                         {% endif %}
                         {% if app.user %}
                             {% if is_granted('ROLE_ADMIN') %}
-                                <li><a href="{{ path('all_clients_view') }}">All clients</a></li>
+                                <li><a href="{{ path('admin_all_job_posts') }}">All Job Posts</a></li>
+                                <li><a href="{{ path('admin_all_clients_view') }}">All Users</a></li>
+                                <li><a href="{{ path('admin_all_contracts_view') }}">All Contracts</a></li>
+                                <li><a href="{{ path('admin_all_skills_view') }}">Add/remove Job Skills</a></li>
                             {%endif%}
                             {% if is_granted('ROLE_FREELANCER') %}
                                 <li><a href="{{ path('homepage') }}">Find a job</a></li>

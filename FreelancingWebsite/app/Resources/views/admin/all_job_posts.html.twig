@@ -26,7 +26,7 @@
                                 </header>
 
                                 <p>
-                                    Client Budget: ${{ jobPost.clientBudget }} | Posted on: {{ jobPost.dateCreated|date }}
+                                    <strong>Client Budget:</strong> ${{ jobPost.clientBudget }} | Posted on: {{ jobPost.dateCreated|date }}
                                 </p>
 
                                 <p>
@@ -34,15 +34,15 @@
                                 </p>
 
                                 <p>
-                                    Proposals: {{ jobPost.proposals|length }}
+                                    <strong>Proposals:</strong> {{ jobPost.proposals|length }}
                                 </p>
 
                                 <p>
-                                    Money Spent: {{ jobPost.proposals|length }}
+                                    <strong>Money Spent:</strong> ${{ jobPost.client.moneySpent }}
                                 </p>
 
                                 <p>
-                                    Client: {{ jobPost.client.getFirstName }} {{ jobPost.client.getLastName }} | Money Spent: - | Location: -
+                                    <strong>Client:</strong> {{ jobPost.client.getFirstName }} {{ jobPost.client.getLastName }} | <strong>Money Spent:</strong> - | <strong>Location:</strong> -
                                 </p>
                             </div>
                             <div class="col-lg-2">

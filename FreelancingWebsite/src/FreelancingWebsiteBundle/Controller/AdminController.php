@@ -2,6 +2,7 @@
 
 namespace FreelancingWebsiteBundle\Controller;
 
+use FreelancingWebsiteBundle\Entity\Category;
 use FreelancingWebsiteBundle\Entity\Contract;
 use FreelancingWebsiteBundle\Entity\JobPost;
 use FreelancingWebsiteBundle\Entity\Skill;
@@ -45,6 +46,18 @@ class AdminController extends Controller
         $contracts = $this->getDoctrine()->getRepository(Contract::class)->findAll();
 
         return $this->render('admin/all_contracts.html.twig', ['contracts' => $contracts]);
+    }
+
+    /**
+     * @Route("/admin/categories", name="admin_all_categories_view")
+     * @param Request $request
+     * @return Response
+     */
+    public function allCategoriesAction()
+    {
+        $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
+
+        return $this->render('admin/all_categories.html.twig', ['categories' => $categories]);
     }
 
     /**

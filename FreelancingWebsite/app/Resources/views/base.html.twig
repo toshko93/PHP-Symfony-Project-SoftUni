@@ -45,6 +45,7 @@
                                 <li><a href="{{ path('admin_all_job_posts') }}">All Job Posts</a></li>
                                 <li><a href="{{ path('admin_all_clients_view') }}">All Users</a></li>
                                 <li><a href="{{ path('admin_all_contracts_view') }}">All Contracts</a></li>
+                                <li><a href="{{ path('admin_all_categories_view') }}">All Categories</a></li>
                                 <li><a href="{{ path('admin_all_skills_view') }}">Add/remove Job Skills</a></li>
                             {%endif%}
                             {% if is_granted('ROLE_FREELANCER') %}
@@ -68,7 +69,10 @@
                                 </div>
                                 <div class="dropdown-content">
                                     <a href="{{ path('my_profile_view') }}">My Profile</a>
+                                    {% if is_granted('ROLE_CLIENT') %}
                                     <a href="{{ path('my_job_posts') }}">My Job Posts</a>
+                                    {%endif%}
+                                    <a href="{{ path('my_proposals') }}">My Proposals</a>
                                     <a href="{{ path('my_contracts') }}">My Contracts</a>
                                     <a href="{{ path('logout') }}">Logout</a>
                                 </div>

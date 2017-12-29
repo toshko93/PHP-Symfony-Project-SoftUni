@@ -6,28 +6,28 @@
         <div class="col-md-12">
             <article>
                 <header>
-                    <h2>Contract for: {{ jobPost.jobTitle }}</h2>
+                    <h2><strong>Contract for:</strong> {{ jobPost.jobTitle }}</h2>
                 </header>
 
-                <p>Date created:
+                <p><strong>Date created:</strong>
                     {{ contract.startDate|date('Y-m-d') }}
                 </p>
 
-                <p>Job description
+                <p><strong>Job description:</strong>
                     {{ jobPost.jobDescription }}
                 </p>
 
-                <p>Sum agreed:
+                <p><strong>Sum agreed:</strong>
                     {{ contract.sumAgreed }}
                 </p>
 
-                <p>Sum paid:
+                <p><strong>Sum paid:</strong>
                     {{ contract.sumPaid }}
                 </p>
 
-                <small class="author">
-                    Client name: {{ jobPost.client.getFirstName }} {{ jobPost.client.getLastName }}
-                </small>
+                <p>
+                    <strong>Client name:</strong> {{ jobPost.client.getFirstName }} {{ jobPost.client.getLastName }}
+                </p>
 
                 <footer>
                     <div class="pull-right">
@@ -38,7 +38,7 @@
                         {% endif %}
 
                         {#<a class="btn btn-success btn-md" href="{{ path('all_proposals_for_single_job_post', {'id': jobPost.id}) }}">View All Proposals</a>#}
-                        {#<a class="btn btn-success btn-md" href="{{ path('proposal_create', {'id': jobPost.id}) }}">Submit Proposal</a>#}
+                        <a class="btn btn-success btn-md" href="{{ path('', {'id': contract.id}) }}">Submit Proposal</a>
                         <a class="btn btn-default btn-md" href="{{ path('homepage') }}">Back &raquo;</a>
                     </div>
                 </footer>

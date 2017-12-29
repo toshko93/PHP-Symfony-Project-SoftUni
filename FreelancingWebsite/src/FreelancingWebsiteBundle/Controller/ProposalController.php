@@ -76,4 +76,15 @@ class ProposalController extends Controller
         $jobPost = $this->getDoctrine()->getRepository(JobPost::class)->find($id);
         return $this->render('proposal/all.html.twig', ['jobPost' => $jobPost]);
     }
+
+    /**
+     * @Route("/my_profile/proposals", name="my_proposals")
+     * @param Request $request
+     * @return Response
+     */
+    public function viewMyProposals(Request $request)
+    {
+        $user = $this->getUser();
+        return $this->render('proposal/my_proposals.html.twig', ['user' => $user]);
+    }
 }

@@ -59,6 +59,27 @@ class User implements UserInterface
     private $dateRegistered;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="money_balance", type="decimal", precision=10, scale=2)
+     */
+    private $moneyBalance;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="money_earned", type="decimal", precision=10, scale=2)
+     */
+    private $moneyEarned;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="money_spent", type="decimal", precision=10, scale=2)
+     */
+    private $moneySpent;
+
+    /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="FreelancingWebsiteBundle\Entity\JobPost", mappedBy="client")
@@ -231,6 +252,78 @@ class User implements UserInterface
     public function getDateCreated()
     {
         return $this->dateRegistered;
+    }
+
+    /**
+     * Set moneyBalance
+     *
+     * @param string $moneyBalance
+     *
+     * @return User
+     */
+    public function setMoneyBalance($moneyBalance)
+    {
+        $this->moneyBalance = $moneyBalance;
+
+        return $this;
+    }
+
+    /**
+     * Get moneyBalance
+     *
+     * @return string
+     */
+    public function getMoneyBalance()
+    {
+        return $this->moneyBalance;
+    }
+
+    /**
+     * Set moneySpent
+     *
+     * @param string $moneySpent
+     *
+     * @return User
+     */
+    public function setMoneySpent($moneySpent)
+    {
+        $this->moneySpent = $moneySpent;
+
+        return $this;
+    }
+
+    /**
+     * Get moneySpent
+     *
+     * @return string
+     */
+    public function getMoneySpent()
+    {
+        return $this->moneySpent;
+    }
+
+    /**
+     * Set moneyEarned
+     *
+     * @param string $moneyEarned
+     *
+     * @return User
+     */
+    public function setMoneyEarned($moneyEarned)
+    {
+        $this->moneyEarned = $moneyEarned;
+
+        return $this;
+    }
+
+    /**
+     * Get moneyEarned
+     *
+     * @return string
+     */
+    public function getMoneyEarned()
+    {
+        return $this->moneyEarned;
     }
 
     /**

@@ -51,6 +51,13 @@ class JobPost
     private $clientBudget;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="clientId", type="integer")
@@ -84,6 +91,7 @@ class JobPost
      */
     public function __construct()
     {
+        $this->setIsActive(true);
         $this->dateCreated = new \DateTime('now');
     }
 
@@ -191,6 +199,30 @@ class JobPost
     public function getClientBudget()
     {
         return $this->clientBudget;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param string $isActive
+     *
+     * @return JobPost
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get clientBudget
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
     }
 
     /**

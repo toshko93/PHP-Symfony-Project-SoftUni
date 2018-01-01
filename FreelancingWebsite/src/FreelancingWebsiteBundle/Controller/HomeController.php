@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $jobPosts = $this->getDoctrine()->getRepository(JobPost::class)->findAll();
+        $jobPosts = $this->getDoctrine()->getRepository(JobPost::class)->findBy(['isActive' => true]);
 
         return $this->render('default/index.html.twig', ['jobPosts' => $jobPosts]);
     }

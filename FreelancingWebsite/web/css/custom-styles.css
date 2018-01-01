@@ -35,3 +35,7 @@
     width: 100%;
     background-color: #D3D3D3;
 }
+
+p.text-danger.job-post-status ,p.text-success.job-post-status {
+    display: inline-block;
+}

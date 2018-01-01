@@ -120,6 +120,20 @@ class User implements UserInterface
     /**
      * @var ArrayCollection
      *
+     * @ORM\OneToMany(targetEntity="FreelancingWebsiteBundle\Entity\Feedback", mappedBy="user")
+     */
+    private $feedbacksAsFreelancer;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="FreelancingWebsiteBundle\Entity\Feedback", mappedBy="user")
+     */
+    private $feedbacksAsClient;
+
+    /**
+     * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="FreelancingWebsiteBundle\Entity\Notification", mappedBy="user")
      */
     private $notifications;
@@ -135,6 +149,7 @@ class User implements UserInterface
         $this->roles = new ArrayCollection();
         $this->contractsAsClient = new ArrayCollection();
         $this->contractsAsFreelancer = new ArrayCollection();
+        $this->feedbacks = new ArrayCollection();
     }
 
     /**
@@ -403,6 +418,26 @@ class User implements UserInterface
     public function addRole(Role $role)
     {
         $this->roles[] = $role;
+
+        return $this;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFeedbacks()
+    {
+        return $this->feedbacks;
+    }
+
+    /**
+     * @param Feedback $feedback
+     *
+     * @return User
+     */
+    public function addFeedback(Feedback $feedback)
+    {
+        $this->feedbacks[] = $feedback;
 
         return $this;
     }

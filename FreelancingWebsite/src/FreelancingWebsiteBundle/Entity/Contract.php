@@ -36,19 +36,19 @@ class Contract
      */
     private $sumPaid;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="feedbackToFreelancer", type="string", length=255, nullable=true)
-     */
-    private $feedbackToFreelancer;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="feedbackToClient", type="string", length=255, nullable=true)
-     */
-    private $feedbackToClient;
+//    /**
+//     * @var string
+//     *
+//     * @ORM\Column(name="feedbackToFreelancer", type="string", length=255, nullable=true)
+//     */
+//    private $feedbackToFreelancer;
+//
+//    /**
+//     * @var string
+//     *
+//     * @ORM\Column(name="feedbackToClient", type="string", length=255, nullable=true)
+//     */
+//    private $feedbackToClient;
 
     /**
      * @var \DateTime
@@ -63,6 +63,13 @@ class Contract
      * @ORM\Column(name="endDate", type="datetime", nullable=true)
      */
     private $endDate;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="is_requested_payment", type="boolean")
+     */
+    private $isRequestedPayment;
 
     /**
      * @var int
@@ -125,11 +132,42 @@ class Contract
     private $freelacer;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="freelancerFeedbackId", type="integer")
+     */
+    private $freelancerFeedbackId;
+
+    /**
+     * @var Feedback
+     *
+     * @ORM\OneToOne(targetEntity="FreelancingWebsiteBundle\Entity\Feedback", inversedBy="contract")
+     * @ORM\JoinColumn(name="freelancerFeedbackId", referencedColumnName="id")
+     */
+    private $freelancerFeedback;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="clientFeedbackId", type="integer")
+     */
+    private $clientFeedbackId;
+
+    /**
+     * @var Feedback
+     *
+     * @ORM\OneToOne(targetEntity="FreelancingWebsiteBundle\Entity\Feedback", inversedBy="contract")
+     * @ORM\JoinColumn(name="clientFeedbackId", referencedColumnName="id")
+     */
+    private $clientFeedback;
+
+    /**
      * Contract constructor.
      */
     public function __construct()
     {
         $this->sumPaid = 0.00;
+        $this->isRequestedPayment = false;
         $this->startDate = new \DateTime('now');
     }
 
@@ -191,53 +229,53 @@ class Contract
         return $this->sumPaid;
     }
 
-    /**
-     * Set feedbackToFreelancer
-     *
-     * @param string $feedbackToFreelancer
-     *
-     * @return Contract
-     */
-    public function setFeedbackToFreelancer($feedbackToFreelancer)
-    {
-        $this->feedbackToFreelancer = $feedbackToFreelancer;
-
-        return $this;
-    }
-
-    /**
-     * Get feedbackToFreelancer
-     *
-     * @return string
-     */
-    public function getFeedbackToFreelancer()
-    {
-        return $this->feedbackToFreelancer;
-    }
-
-    /**
-     * Set feedbackToClient
-     *
-     * @param string $feedbackToClient
-     *
-     * @return Contract
-     */
-    public function setFeedbackToClient($feedbackToClient)
-    {
-        $this->feedbackToClient = $feedbackToClient;
-
-        return $this;
-    }
-
-    /**
-     * Get feedbackToClient
-     *
-     * @return string
-     */
-    public function getFeedbackToClient()
-    {
-        return $this->feedbackToClient;
-    }
+//    /**
+//     * Set feedbackToFreelancer
+//     *
+//     * @param string $feedbackToFreelancer
+//     *
+//     * @return Contract
+//     */
+//    public function setFeedbackToFreelancer($feedbackToFreelancer)
+//    {
+//        $this->feedbackToFreelancer = $feedbackToFreelancer;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get feedbackToFreelancer
+//     *
+//     * @return string
+//     */
+//    public function getFeedbackToFreelancer()
+//    {
+//        return $this->feedbackToFreelancer;
+//    }
+//
+//    /**
+//     * Set feedbackToClient
+//     *
+//     * @param string $feedbackToClient
+//     *
+//     * @return Contract
+//     */
+//    public function setFeedbackToClient($feedbackToClient)
+//    {
+//        $this->feedbackToClient = $feedbackToClient;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get feedbackToClient
+//     *
+//     * @return string
+//     */
+//    public function getFeedbackToClient()
+//    {
+//        return $this->feedbackToClient;
+//    }
 
     /**
      * Set startDate
@@ -287,7 +325,25 @@ class Contract
         return $this->endDate;
     }
 
+    /**
+     * Set isRequestedPayment
+     *
+     * @return Contract
+     */
+    public function setIsRequestedPayment(bool $isRequestedPayment)
+    {
+        $this->isRequestedPayment = $isRequestedPayment;
 
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getIsRequestedPayment()
+    {
+        return $this->isRequestedPayment;
+    }
 
     /**
      * @param integer $jobPostId
@@ -372,8 +428,87 @@ class Contract
         return $this->proposal;
     }
 
+    /**
+     * @param integer $freelancerFeedbackId
+     *
+     * @return Contract
+     */
+    public function setFreelancerFeedbackId(int $freelancerFeedbackId)
+    {
+        $this->freelancerFeedbackId = $freelancerFeedbackId;
 
+        return $this;
+    }
 
+    /**
+     * @return int
+     */
+    public function getFreelancerFeedbackId()
+    {
+        return $this->freelancerFeedbackId;
+    }
+
+    /**
+     * @param \FreelancingWebsiteBundle\Entity\Feedback $freelancerFeedback
+     *
+     * @return Contract
+     */
+
+    public function setFreelancerFeedback(Feedback $freelancerFeedback = null)
+    {
+        $this->freelancerFeedback = $freelancerFeedback;
+
+        return $this;
+    }
+
+    /**
+     * @return \FreelancingWebsiteBundle\Entity\Feedback
+     */
+    public function getFreelancerFeedback()
+    {
+        return $this->freelancerFeedback;
+    }
+
+    /**
+     * @param integer $clientFeedbackId
+     *
+     * @return Contract
+     */
+    public function setClientFeedbackId(int $clientFeedbackId)
+    {
+        $this->clientFeedbackId = $clientFeedbackId;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getClientFeedbackId()
+    {
+        return $this->clientFeedbackId;
+    }
+
+    /**
+     * @param \FreelancingWebsiteBundle\Entity\Feedback $clientFeedback
+     *
+     * @return Contract
+     */
+
+    public function setClientFeedback(Feedback $clientFeedback = null)
+    {
+        $this->clientFeedback = $clientFeedback;
+
+        return $this;
+    }
+
+    /**
+     * @return \FreelancingWebsiteBundle\Entity\Feedback
+     */
+    public function getClientFeedback()
+    {
+        return $this->clientFeedback;
+    }
 
 
 

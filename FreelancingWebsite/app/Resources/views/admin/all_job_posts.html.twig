@@ -44,6 +44,11 @@
                                 <p>
                                     <strong>Client:</strong> {{ jobPost.client.getFirstName }} {{ jobPost.client.getLastName }} | <strong>Money Spent:</strong> - | <strong>Location:</strong> -
                                 </p>
+
+                                <div>
+                                    <strong>Status: {% if jobPost.isActive == true %}<p class="text-success job-post-status">Active</p>{% else %}<p class="text-danger job-post-status">Inactive</p>{% endif %}</strong>
+                                </div>
+
                             </div>
                             <div class="col-lg-2">
                                 <div class="pull-right">

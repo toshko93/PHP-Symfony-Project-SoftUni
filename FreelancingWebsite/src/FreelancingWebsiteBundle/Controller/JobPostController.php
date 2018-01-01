@@ -101,7 +101,7 @@ class JobPostController extends Controller
             $em->persist($jobPost);
             $em->flush();
 
-            return $this->redirectToRoute('job_post_view', array('id' => $jobPost->getId()));
+            return $this->redirectToRoute('single_job_post_view', array('id' => $jobPost->getId()));
         }
 
         return $this->render('jobPost/edit.html.twig', array('jobPost' => $jobPost, 'form' => $form->createView()));
@@ -137,6 +137,12 @@ class JobPostController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            // Remove each proposal before deleting the Job Post
+            foreach ($jobPost->getProposals() as $proposal) {
+                $em->remove($proposal);
+            }
+
             $em->remove($jobPost);
             $em->flush();
 

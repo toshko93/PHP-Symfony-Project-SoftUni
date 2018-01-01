@@ -8,6 +8,7 @@ use FreelancingWebsiteBundle\Entity\JobPost;
 use FreelancingWebsiteBundle\Entity\Skill;
 use FreelancingWebsiteBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,6 +27,8 @@ class AdminController extends Controller
 
     /**
      * @Route("/admin/clients", name="admin_all_clients_view")
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     *
      * @param Request $request
      * @return Response
      */

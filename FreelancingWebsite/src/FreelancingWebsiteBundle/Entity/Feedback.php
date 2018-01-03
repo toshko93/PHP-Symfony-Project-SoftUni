@@ -24,43 +24,84 @@ class Feedback
     /**
      * @var string
      *
-     * @ORM\Column(name="feedbackText", type="string", length=255)
+     * @ORM\Column(name="freelancer_feedback_text", type="string", length=255, nullable=true)
      */
-    private $feedbackText;
+    private $freelancerFeedbackText;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="feedbackScore", type="integer", nullable=true)
+     * @ORM\Column(name="freelancer_feedback_score", type="integer", nullable=true)
      */
-    private $feedbackScore;
+    private $freelancerFeedbackScore;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="userId", type="integer")
+     * @ORM\Column(name="freelancer_id", type="integer")
      */
-    private $userId;
+    private $freelancerId;
 
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="FreelancingWebsiteBundle\Entity\User", inversedBy="feedbacks")
-     * @ORM\JoinColumn(name="userId", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="FreelancingWebsiteBundle\Entity\User", inversedBy="feedbacksAsFreelancer")
+     * @ORM\JoinColumn(name="freelancer_id", referencedColumnName="id")
      */
-    private $user;
+    private $freelancer;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="client_feedback_text", type="string", length=255, nullable=true)
+     */
+    private $clientFeedbackText;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="client_feedback_score", type="integer", nullable=true)
+     */
+    private $clientFeedbackScore;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="client_id", type="integer")
+     */
+    private $clientId;
+
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="FreelancingWebsiteBundle\Entity\User", inversedBy="feedbacksAsClient")
+     * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     */
+    private $client;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="contractId", type="integer")
+     */
+    private $contractId;
 
     /**
      * @var Contract
      *
-     * @ORM\OneToOne(targetEntity="FreelancingWebsiteBundle\Entity\Contract", mappedBy="freelancerFeedback", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="FreelancingWebsiteBundle\Entity\Contract", inversedBy="feedback")
+     * @ORM\JoinColumn(name="contractId", referencedColumnName="id")
      */
     private $contract;
 
-    public function __construct(User $user)
+    /**
+     * Feedback constructor.
+     */
+    public function __construct(User $freelancer, User $client, Contract $contract)
     {
-        $this->feedbackText = "";
-        $this->user = $user;
+        $this->freelancer = $freelancer;
+        $this->client = $client;
+        $this->contract = $contract;
     }
 
     /**
@@ -74,39 +115,39 @@ class Feedback
     }
 
     /**
-     * Set feedbackText
+     * Set freelancerFeedbackText
      *
-     * @param string $feedbackText
+     * @param string $freelancerFeedbackText
      *
      * @return Feedback
      */
-    public function setFeedbackText($feedbackText)
+    public function setFreelancerFeedbackText(string $freelancerFeedbackText) : Feedback
     {
-        $this->feedbackText = $feedbackText;
+        $this->freelancerFeedbackText = $freelancerFeedbackText;
 
         return $this;
     }
 
     /**
-     * Get feedbackText
+     * Get freelancerFeedbackText
      *
      * @return string
      */
-    public function getFeedbackText()
+    public function getFreelancerFeedbackText()
     {
-        return $this->feedbackText;
+        return $this->freelancerFeedbackText;
     }
 
     /**
-     * Set feedbackScore
+     * Set freelancerFeedbackScore
      *
-     * @param string $feedbackScore
+     * @param string $freelancerFeedbackScore
      *
      * @return Feedback
      */
-    public function setFeedbackScore($feedbackScore)
+    public function setFreelancerFeedbackScore($freelancerFeedbackScore)
     {
-        $this->feedbackScore = $feedbackScore;
+        $this->freelancerFeedbackScore = $freelancerFeedbackScore;
 
         return $this;
     }
@@ -116,21 +157,21 @@ class Feedback
      *
      * @return string
      */
-    public function getFeedbackScore()
+    public function getFreelancerFeedbackScore()
     {
-        return $this->feedbackScore;
+        return $this->freelancerFeedbackScore;
     }
 
     /**
-     * Set userId
+     * Set freelancerId
      *
-     * @param integer $userId
+     * @param integer $freelancerId
      *
      * @return Feedback
      */
-    public function setUserId($userId)
+    public function setFreelancerId($freelancerId)
     {
-        $this->userId = $userId;
+        $this->freelancerId = $freelancerId;
 
         return $this;
     }
@@ -138,19 +179,19 @@ class Feedback
     /**
      * @return int
      */
-    public function getUserId()
+    public function getFreelancerId()
     {
-        return $this->userId;
+        return $this->freelancerId;
     }
 
     /**
-     * @param \FreelancingWebsiteBundle\Entity\User $user
+     * @param \FreelancingWebsiteBundle\Entity\User $freelancer
      *
      * @return Feedback
      */
-    public function setUser(User $user = null)
+    public function setFreelancer(User $freelancer = null)
     {
-        $this->user = $user;
+        $this->freelancer = $freelancer;
 
         return $this;
     }
@@ -158,9 +199,126 @@ class Feedback
     /**
      * @return \FreelancingWebsiteBundle\Entity\User
      */
-    public function getUser()
+    public function getFreelancer()
     {
-        return $this->user;
+        return $this->freelancer;
+    }
+
+
+
+    /**
+     * Set clientFeedbackText
+     *
+     * @param string $clientFeedbackText
+     *
+     * @return Feedback
+     */
+    public function setClientFeedbackText($clientFeedbackText)
+    {
+        $this->clientFeedbackText = $clientFeedbackText;
+
+        return $this;
+    }
+
+    /**
+     * Get clientFeedbackText
+     *
+     * @return string
+     */
+    public function getClientFeedbackText()
+    {
+        return $this->clientFeedbackText;
+    }
+
+    /**
+     * Set clientFeedbackScore
+     *
+     * @param string $clientFeedbackScore
+     *
+     * @return Feedback
+     */
+    public function setClientFeedbackScore($clientFeedbackScore)
+    {
+        $this->clientFeedbackScore = $clientFeedbackScore;
+
+        return $this;
+    }
+
+    /**
+     * Get clientFeedbackScore
+     *
+     * @return string
+     */
+    public function getClientFeedbackScore()
+    {
+        return $this->clientFeedbackScore;
+    }
+
+    /**
+     * Set clientId
+     *
+     * @param integer $clientId
+     *
+     * @return Feedback
+     */
+    public function setClientId($clientId)
+    {
+        $this->$clientId = $clientId;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getClientId()
+    {
+        return $this->clientId;
+    }
+
+    /**
+     * @param \FreelancingWebsiteBundle\Entity\User $client
+     *
+     * @return Feedback
+     */
+    public function setClient(User $client = null)
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * @return \FreelancingWebsiteBundle\Entity\User
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+
+
+
+    /**
+     * Set contractId
+     *
+     * @param integer $contractId
+     *
+     * @return Feedback
+     */
+    public function setContractId($contractId)
+    {
+        $this->contractId = $contractId;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getContractId()
+    {
+        return $this->contractId;
     }
 
     /**

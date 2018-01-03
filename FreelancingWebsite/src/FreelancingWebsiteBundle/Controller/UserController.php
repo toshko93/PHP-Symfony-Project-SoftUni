@@ -67,15 +67,15 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/freelancer/{id}", name="freelancer_profile_view")
+     * @Route("/user/{id}", name="user_profile_view")
      * @param Request $request
      * @return Response
      */
-    public function viewFreelancerProfileAction($id)
+    public function viewUserProfileAction($id)
     {
-        $freelancer = $this->getDoctrine()->getRepository(User::class)->find($id);
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
 
-        return $this->render('users/freelancer_profile.html.twig', ['freelancer' => $freelancer]);
+        return $this->render('users/single_user_profile.html.twig', ['user' => $user]);
     }
 
     /**
@@ -88,17 +88,5 @@ class UserController extends Controller
         $freelancers = $this->getDoctrine()->getRepository(User::class)->findAll();
 
         return $this->render('users/find_freelancer.html.twig', ['freelancers' => $freelancers]);
-    }
-
-    /**
-     * @Route("/client/{id}", name="client_profile_view")
-     * @param Request $request
-     * @return Response
-     */
-    public function viewClientProfileAction($id)
-    {
-        $client = $this->getDoctrine()->getRepository(User::class)->find($id);
-
-        return $this->render('users/client_profile.html.twig', ['client' => $client]);
     }
 }

@@ -29,7 +29,7 @@
                                         </div>
                                         <div class="col-lg-8">
                                             <header>
-                                                <a href="{{ path('freelancer_profile_view', {'id': freelancer.id}) }}"><h3>{{ freelancer.firstName }} {{ freelancer.lastName }}</h3></a>
+                                                <a href="{{ path('user_profile_view', {'id': freelancer.id}) }}"><h3>{{ freelancer.firstName }} {{ freelancer.lastName }}</h3></a>
                                             </header>
 
                                             <p>
@@ -47,7 +47,7 @@
                                         <div class="col-lg-2">
                                             <div class="pull-right">
                                                 <a class="btn btn-default btn-xs"
-                                                   href="{{ path('freelancer_profile_view', {'id': freelancer.id}) }}">View Profile&raquo;</a>
+                                                   href="{{ path('user_profile_view', {'id': freelancer.id}) }}">View Profile&raquo;</a>
                                             </div>
                                         </div>
                                     </article>

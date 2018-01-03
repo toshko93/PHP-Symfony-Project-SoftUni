@@ -35,14 +35,15 @@ class ProposalController extends Controller
             $proposal->setJobPost($jobPost);
             $proposal->setFreelancer($this->getUser());
 
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($proposal);
+            $em->flush();
+
             // Notification create
             $notification = new Notification();
             $notification->setMessage("A new proposal has been submitted to your job offer with id " . $jobPost->getId());
-            $notification->setTargetLink("http://localhost:8000/jobPost/" . $jobPost->getId());
+            $notification->setTargetLink("http://localhost:8000/proposal/" . $proposal->getId());
             $notification->setUser($jobPost->getClient());
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($proposal);
             $em->persist($notification);
             $em->flush();
 

@@ -113,21 +113,21 @@ class User implements UserInterface
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="FreelancingWebsiteBundle\Entity\Contract", mappedBy="freelacer")
+     * @ORM\OneToMany(targetEntity="FreelancingWebsiteBundle\Entity\Contract", mappedBy="freelancer")
      */
     private $contractsAsFreelancer;
 
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="FreelancingWebsiteBundle\Entity\Feedback", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="FreelancingWebsiteBundle\Entity\Feedback", mappedBy="freelancer")
      */
     private $feedbacksAsFreelancer;
 
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="FreelancingWebsiteBundle\Entity\Feedback", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="FreelancingWebsiteBundle\Entity\Feedback", mappedBy="client")
      */
     private $feedbacksAsClient;
 
@@ -144,12 +144,16 @@ class User implements UserInterface
     public function __construct()
     {
         $this->dateRegistered = new \DateTime('now');
+        $this->moneyEarned = 0;
+        $this->moneySpent = 0;
+        $this->moneyBalance = 100;
         $this->jobPosts = new ArrayCollection();
         $this->proposals = new ArrayCollection();
         $this->roles = new ArrayCollection();
         $this->contractsAsClient = new ArrayCollection();
         $this->contractsAsFreelancer = new ArrayCollection();
-        $this->feedbacks = new ArrayCollection();
+        $this->feedbacksAsClient = new ArrayCollection();
+        $this->feedbacksAsFreelancer = new ArrayCollection();
     }
 
     /**
@@ -420,6 +424,19 @@ class User implements UserInterface
         $this->roles[] = $role;
 
         return $this;
+    }
+
+    public function hasRole($inputStringRole)
+    {
+        $userRoles = $this->getRoles();
+
+        foreach ($userRoles as $role) {
+            if ($role == $inputStringRole) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

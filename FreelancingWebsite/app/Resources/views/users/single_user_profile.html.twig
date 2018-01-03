@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container body-content">
+        <div class="row well">
+            <h1>My Profile</h1>
+            <div class="col-md-12">
+                <div class="inner-box-wrapper">
+                    <div class="col-lg-2">
+                        <img src="{{ asset('apple-touch-icon.png') }}" style="width: 100%; height: 100%"/>
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Full Name:</p>
+                        <p>E-mail:</p>
+                        <p>Member since:</p>
+                        <p>Money Balance:</p>
+                        <p></p>
+                    </div>
+                    <div class="col-lg-8">
+                        <p>
+                            {{ user.getFirstName() }} {{ user.getLastName() }}
+                        </p>
+                        <p>
+                            {{ user.email }}
+                        </p>
+                        <p>
+                            {{ user.getDateCreated()|date('Y-m-d') }}
+                        </p>
+                        <p>
+                            ${{ user.moneyBalance }}
+                        </p>
+                        <p>
+                            {#{{ user. }}#}
+                        </p>
+                        <p>
+                            {#{{ user. }}#}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row well">
+            {% if user.hasRole('ROLE_FREELANCER') %}
+                <div class="col-md-6">
+                    <h1>Freelancer Stats</h1>
+                    <div class="inner-box-wrapper">
+                        <div class="col-lg-4">
+                            <p>Money Made: </p>
+                            <p>Jobs Done: </p>
+                            <p>Freelancer Score: </p>
+                        </div>
+                        <div class="col-lg-8">
+                            <p>${{ user.moneyEarned }}</p>
+                            <p>{{ user.email }}</p>
+                            <p>{{ user.email }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if user.hasRole('ROLE_CLIENT') %}
+                <div class="col-md-6">
+                    <h1>Client Stats</h1>
+                    <div class="inner-box-wrapper">
+                        <div class="col-lg-4">
+                            <p>Money Spent: </p>
+                            <p>Contracts Done: </p>
+                            <p>Client Score: </p>
+                        </div>
+                        <div class="col-lg-8">
+                            <p>${{ user.moneySpent }}</p>
+                            <p>{{ user.email }}</p>
+                            <p>{{ user.email }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

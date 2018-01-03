@@ -8,23 +8,22 @@
                 <div class="col-md-12">
                     <article>
                         <header>
-                            <a href="{{ path('single_proposal_view', {'id': proposal.id}) }}">
-                                <h2>{{ proposal.freelancer.getFirstName }} {{ proposal.freelancer.getLastName }}</h2>
-                            </a>
+                            <h3>
+                                Freelancer Name: <a href="{{ path('user_profile_view', {'id': proposal.freelancerId}) }}"> {{ proposal.freelancer.getFirstName }} {{ proposal.freelancer.getLastName }}</a>
+                            </h3>
                         </header>
 
                         <p>
                             {{ proposal.coverLetter }}
                         </p>
 
-                        <small class="author">
-                            {{ proposal.freelancer.getFirstName }} {{ proposal.freelancer.getLastName }}
-                        </small>
+                        <p>
+                            {#{{ proposal.freelancer }}#}
+                        </p>
 
                         <footer>
                             <div class="pull-right">
-                                <a class="btn btn-default btn-xs"
-                                   href="{{ path('single_proposal_view', {'id': jobPost.id, 'proposal_id': proposal.id}) }}">Read more &raquo;</a>
+                                <a class="btn btn-success btn-sm" href="{{ path('single_proposal_view', {'id': jobPost.id, 'proposal_id': proposal.id}) }}">See proposal details</a>
                             </div>
                         </footer>
                     </article>

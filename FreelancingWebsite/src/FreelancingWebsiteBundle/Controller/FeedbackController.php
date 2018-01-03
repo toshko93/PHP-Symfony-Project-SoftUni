@@ -25,12 +25,7 @@ class FeedbackController extends Controller
     {
         $contract = $this->getDoctrine()->getRepository(Contract::class)->find($id);
 
-        if ($contract->getFreelancer() == $this->getUser()) {
-            $feedback = $contract->getFreelancerFeedback();
-        }
-        else if ($contract->getClient() == $this->getUser()) {
-            $feedback = $contract->getClientFeedback();
-        }
+        $feedback = $contract->getFeedback();
 
         $form = $this->createForm(FeedbackType::class, $feedback);
 

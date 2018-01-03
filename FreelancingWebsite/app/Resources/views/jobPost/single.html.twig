@@ -18,7 +18,7 @@
                     </p>
 
                     <p>
-                        {{ jobPost.clientBudget }}
+                        ${{ jobPost.clientBudget }}
                     </p>
 
                     <small class="author">
@@ -33,6 +33,7 @@
                                 <a class="btn btn-danger btn-md" href="{{ path('job_post_delete', {'id': jobPost.id}) }}">Delete Job Post</a>
                                 <a class="btn btn-success btn-md" href="{{ path('all_proposals_for_single_job_post', {'id': jobPost.id}) }}">View All Proposals</a>
                             {% endif %}
+                            {# Add check for if user has already submited proposal #}
                             {% if is_granted('ROLE_FREELANCER') and  app.getUser().isJobPostAuthor(jobPost) != app.getUser() %}
                                 <a class="btn btn-success btn-md" href="{{ path('proposal_create', {'id': jobPost.id}) }}">Submit Proposal</a>
                             {% endif %}

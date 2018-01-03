@@ -44,7 +44,7 @@
                             {#<a class="btn btn-success btn-md" href="{{ path('job_post_edit', {'id': jobPost.id}) }}">Edit Job Post</a>#}
                             {#<a class="btn btn-danger btn-md" href="{{ path('job_post_delete', {'id': jobPost.id}) }}">Delete Job Post</a>#}
                         {% endif %}
-                        {% if is_granted('ROLE_CLIENT') and contract.getIsRequestedPayment() and contract.sumAgreed != contract.sumPaid %}
+                        {% if app.getUser() == contract.client and contract.getIsRequestedPayment() and contract.sumAgreed != contract.sumPaid %}
                             <a class="btn btn-success btn-md" href="{{ path('end_contract', {'id': contract.id}) }}">Pay to Client</a>
                         {%endif%}
                         {% if is_granted('ROLE_CLIENT') and contract.endDate != null %}

@@ -14,6 +14,7 @@ class HomeController extends Controller
      */
     public function indexAction(Request $request)
     {
+        // ToDo: Check if client or freelancer
         $jobPosts = $this->getDoctrine()->getRepository(JobPost::class)->findBy(['isActive' => true]);
 
         return $this->render('default/index.html.twig', ['jobPosts' => $jobPosts]);

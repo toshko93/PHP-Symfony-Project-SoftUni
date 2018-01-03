@@ -39,40 +39,44 @@ class ContractController extends Controller
         $client = $this->getDoctrine()->getRepository(User::class)->find($clientId);
         $freelancer = $this->getDoctrine()->getRepository(User::class)->find($freelancerId);
 
-        // Create the contract
-        $contract = new Contract();
-        $contract->setSumAgreed($priceAgreed);
-        $contract->setJobPost($jobPost);
-        $contract->setProposal($proposal);
-        $contract->setClient($client);
-        $contract->setFreelancer($freelancer);
+        $con = $this->getDoctrine()->getRepository(Contract::class)->findBy(['jobPostId' => $jobPostId]);
 
-        $freelancerFeedback = new Feedback($contract->getFreelancer());
-        $clientFeedback = new Feedback($contract->getClient());
+        if (!$con) {
+            // Create the contract
+            $contract = new Contract();
+            $contract->setSumAgreed($priceAgreed);
+            $contract->setJobPost($jobPost);
+            $contract->setProposal($proposal);
+            $contract->setClient($client);
+            $contract->setFreelancer($freelancer);
 
-        $contract->setFreelancerFeedback($freelancerFeedback);
-        $contract->setClientFeedback($clientFeedback);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($contract);
+            $em->flush();
 
-        // Notification create
-        $notification = new Notification();
-        $notification->setMessage("A contract has started on the job with id " . $jobPost->getId());
-        $notification->setUser($contract->getFreelancer());
+            $client->setMoneyBalance($client->getMoneyBalance() - $contract->getSumAgreed());
 
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($freelancerFeedback);
-        $em->flush();
-        $em->persist($clientFeedback);
-        $em->flush();
-        $em->persist($contract);
-        $em->flush();
+//            $contractFeedback = new Feedback($freelancer, $client, $contract->getId());
+//            $contract->setFeedback($contractFeedback);
+//
+//            $em->persist($contractFeedback);
+//            $em->flush();
 
-        $jobPost->setIsActive(false);
+            // Notification create
+            $notification = new Notification();
+            $notification->setMessage("A contract has started on the job with id " . $jobPost->getId());
+            $notification->setUser($contract->getFreelancer());
 
-        $notification->setTargetLink("http://localhost:8000/contract/" . $contract->getId());
-        $em->persist($notification);
-        $em->flush();
+            $jobPost->setIsActive(false);
 
-        return $this->redirectToRoute('single_contract_view', ['id' => $contract->getId(), 'jobPost' => $jobPost, 'contract' => $contract]);
+            $notification->setTargetLink("http://localhost:8000/contract/" . $contract->getId());
+            $em->persist($notification);
+            $em->flush();
+
+            return $this->redirectToRoute('single_contract_view', ['id' => $contract->getId(), 'jobPost' => $jobPost, 'contract' => $contract]);
+        }
+
+        return $this->redirectToRoute('homepage');
     }
 
     /**
@@ -101,9 +105,15 @@ class ContractController extends Controller
     {
         $myId = $this->getUser()->getId();
 
-        $myContracts = $this->getDoctrine()->getRepository(Contract::class)->findBy(['clientId' => $myId]);
+        if ($this->getUser()->hasRole('ROLE_CLIENT')) {
+            $myContracts = $this->getDoctrine()->getRepository(Contract::class)->findBy(['clientId' => $myId]);
+            return $this->render('contract/my_contracts.html.twig', ['myContracts' => $myContracts]);
+        } else if ($this->getUser()->hasRole('ROLE_FREELANCER')) {
+            $myContracts = $this->getDoctrine()->getRepository(Contract::class)->findBy(['freelancerId' => $myId]);
+            return $this->render('contract/my_contracts.html.twig', ['myContracts' => $myContracts]);
+        }
 
-        return $this->render('contract/my_contracts.html.twig', ['myContracts' => $myContracts]);
+        return $this->render('contract/my_contracts.html.twig');
     }
 
     /**
@@ -117,6 +127,10 @@ class ContractController extends Controller
 
         $freelancer = $this->getDoctrine()->getRepository(User::class)->find($contract->getFreelancerId());
         $freelancer->setMoneyBalance($freelancer->getMoneyBalance() + $contract->getSumAgreed());
+        $freelancer->setMoneyEarned($freelancer->getMoneyEarned() + $contract->getSumAgreed());
+
+        $client = $this->getDoctrine()->getRepository(User::class)->find($contract->getClientId());
+        $client->setMoneySpent($client->getMoneySpent() + $contract->getSumAgreed());
 
         $contract->setEndDate(new \DateTime('now'));
         $contract->setSumPaid($contract->getSumAgreed());
@@ -124,9 +138,17 @@ class ContractController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($freelancer);
         $em->flush();
+        $em->persist($client);
+        $em->flush();
 
         $em->persist($contract);
         $em->flush();
+
+//        $contractFeedback = new Feedback($freelancer, $client, $contract);
+//        $contract->setFeedback($contractFeedback);
+//
+//        $em->persist($contractFeedback);
+//        $em->flush();
 
         // redirect to give feedback if client
 //        if ($this->getUser() == $contract->getClient()) {
@@ -135,12 +157,15 @@ class ContractController extends Controller
 
         // sent notification to freelancer for feedback
         // Notification create
-        $notification = new Notification();
-        $notification->setMessage("Your payment request for contract with id " . $contract->getId() . " has been approved. Please provide feedback for the client.");
-        $notification->setUser($contract->getFreelancer());
-        $notification->setTargetLink("http://localhost:8000/contract/" . $contract->getId() . "/give_feedback");
+//        $notification = new Notification();
+//        $notification->setMessage("Your payment request for contract with id " . $contract->getId() . " has been approved. Please provide feedback for the client.");
+//        $notification->setUser($contract->getFreelancer());
+//        $notification->setTargetLink("http://localhost:8000/contract/" . $contract->getId() . "/give_feedback");
+//
+//        $em->persist($notification);
+//        $em->flush();
 
-        return $this->redirectToRoute('give_feedback', ['id' => $contract->getId()]);
+        return $this->redirectToRoute('single_contract_view', ['id' => $contract->getId()]);
     }
 
     /**

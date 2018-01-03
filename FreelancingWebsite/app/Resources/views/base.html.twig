@@ -69,10 +69,15 @@
                                 </div>
                                 <div class="dropdown-content">
                                     <a href="{{ path('my_profile_view') }}">My Profile</a>
+
                                     {% if is_granted('ROLE_CLIENT') %}
                                     <a href="{{ path('my_job_posts') }}">My Job Posts</a>
-                                    {%endif%}
+                                    {% endif %}
+
+                                    {% if is_granted('ROLE_FREELANCER') %}
                                     <a href="{{ path('my_proposals') }}">My Proposals</a>
+                                    {% endif %}
+
                                     <a href="{{ path('my_contracts') }}">My Contracts</a>
                                     <a href="{{ path('logout') }}">Logout</a>
                                 </div>
